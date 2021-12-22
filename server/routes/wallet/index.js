@@ -13,7 +13,7 @@ router.post('/user', async(req,res) => {
   reqPassword = req.body.password;
 
   // user에서 find로 userName을 찾고,
-  db.User.findOrCreate({
+  db.users.findOrCreate({
     where: {
       userName: reqUserName
     },
@@ -43,7 +43,7 @@ router.post('/user', async(req,res) => {
           let address = (ks.getAddresses()).toString();
           let keyStore = ks.serialize();
 
-          db.User.update({
+          db.users.update({
             password: reqPassword,
             address: address,
             privateKey: mnemonic
@@ -54,6 +54,7 @@ router.post('/user', async(req,res) => {
           })
           .then(result => {
             // 주소를 보여준다
+            
             res.json(address);
           })
           .catch(err => {

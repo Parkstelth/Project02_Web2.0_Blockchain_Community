@@ -21,13 +21,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(
-  cors({
-    origin: ['http://localhost:3000'],
-    methods: ['GET', 'POST'],
-    credentials: true
-  })
-);
+app.use(cors());
+
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -36,6 +31,11 @@ app.use('/sign', walletRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
+});
+
+app.use((req, res) => {
+	res.header("Access-Control-Allow-Origin", "*"); // 모든 도메인
+  
 });
 
 // error handler
