@@ -9,6 +9,9 @@
 # testing
 /coverage
 /migrations
+/models
+/config
+/bin
 # production
 /build
 
