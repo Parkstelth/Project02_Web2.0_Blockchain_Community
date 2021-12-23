@@ -35,7 +35,6 @@ app.use(function(req, res, next) {
 
 app.use((req, res) => {
 	res.header("Access-Control-Allow-Origin", "*"); // 모든 도메인
-  
 });
 
 // error handler

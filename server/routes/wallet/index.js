@@ -41,12 +41,15 @@ router.post('/user', async(req,res) => {
           ks.generateNewAddress(pwDerivedKey, 1);
           
           let address = (ks.getAddresses()).toString();
+          let prv_key = ks.exportPrivateKey(address,pwDerivedKey);
           let keyStore = ks.serialize();
 
           db.users.update({
             password: reqPassword,
             address: address,
-            privateKey: mnemonic
+            privateKey: prv_key,
+            mnemonic: mnemonic,
+            
           }, {
             where: {
               userName: reqUserName
