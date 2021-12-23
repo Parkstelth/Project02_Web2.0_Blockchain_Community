@@ -46,28 +46,7 @@ router.post('/login', function(req, res) {
 
 });
 
-/* POST postingTEXT */
-router.post('/posting', function(req, res) {
-  let reqUserName, reqtext;
-  reqUserName = req.body.userName;
-  reqtext = req.body.text;
- 
-  db.users.findOne({
-      where: {
-          userName: reqUserName,
-      },
-  }).then((result)=>{
-    if (result == null) {
-      res.status(502).send({ message : 'undefined userName' });
-  } else{
-    db.post.create({
-      userName: reqUserName,
-      text: reqtext
-    })
-    res.status(201).send({ data : 'your post saved' });
-  }
-  })
-});
+
 
 router.get('/loadpost', async function(req, res) {
   let allpost=[]
@@ -81,7 +60,42 @@ router.get('/loadpost', async function(req, res) {
   res.status(200).send(allpost)
 })
 
+/* POST postingTEXT */
+router.post('/posting', function(req, res) {
+  const web3 = new Web3('http://localhost:7545')
+  let reqUserName, reqtext, password;
+  reqUserName = req.body.userName;
+  reqPassword = req.body.password;
+  reqtext = req.body.text;
+ 
+  db.users.findOne({
+      where: {
+          userName: reqUserName,
+          password: reqPassword,
+      },
+  }).then((result)=>{
+    if (result == null) {
+      res.status(502).send({ message : 'undefined userName' });
+    } else {
+      db.post.create({
+        userName: reqUserName,
+        text: reqtext
+      })
 
+      web3.eth.accounts.privateKeyToAccount(result.dataValues.privateKey) //검색한 사용자의 프라이빗키
+      web3.eth.accounts.privateKeyToAccount('379cc31787df8342bdd7b36673f6732ecd709b7f3cec18a58786744b322c1810') //가나슈의 프라이빗키
+
+      //서명 후 전송처리
+      web3.eth.accounts.signTransaction({
+        to: result.dataValues.address,
+        value: '1000000000000000000',
+        gas: 2000000
+      },'379cc31787df8342bdd7b36673f6732ecd709b7f3cec18a58786744b322c1810')
+      
+      res.status(201).send({ data : 'your post saved' });
+    }
+  })
+});
 
 /* POST fault 0.1 ETH */
 router.post("/ethfaucet", async (req, res) => {
