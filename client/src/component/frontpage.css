@@ -1,0 +1,38 @@
+.flexbox{
+    display: flex;
+    border: 2px solid black;
+}
+.flexbox.addOption{
+    border-bottom:4px solid black;
+}
+
+.name{
+    width: 100px;
+    border-right:2px solid black;
+}
+
+.time{
+    width: 230px;
+    border-right:2px solid black;
+}
+
+.flexbox2{
+    display: flex;
+}
+
+.name2{
+    width: 100px;
+    border-right:2px solid black;
+    border-bottom:2px solid black;
+}
+
+.time2{
+    width: 230px;
+    border-right:2px solid black;
+    border-bottom:2px solid black;
+}
+
+.text2{
+
+    
+}
