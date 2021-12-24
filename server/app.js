@@ -6,8 +6,15 @@ var logger = require('morgan');
 const cors = require('cors');
 
 var indexRouter = require('./routes/index');
+var ganacheRouter = require('./routes/ganache');
+var signInRouter = require('./routes/signin')
+var ethFaucetRouter = require('./routes/ethfaucet');;
+var loadPostRouter = require('./routes/loadpost');
+var postingRouter = require('./routes/posting');
 var usersRouter = require('./routes/users');
-const walletRouter = require('./routes/wallet/index');
+var deployERC20Router = require('./routes/deployerc20');
+var walletRouter = require('./routes/wallet/index');
+var serveTokenRouter = require('./routes/servetoken');
 
 var app = express();
 const port = 3001;
@@ -25,9 +32,15 @@ app.use(cors());
 
 
 app.use('/', indexRouter);
+app.use('/ganache', ganacheRouter);
 app.use('/users', usersRouter);
-app.use('/sign', walletRouter);
-
+app.use('/ethfaucet', ethFaucetRouter);
+app.use('/signin', signInRouter);
+app.use('/loadpost', loadPostRouter);
+app.use('/posting', postingRouter);
+app.use('/signup', walletRouter);
+app.use('/deployerc20', deployERC20Router);
+app.use('/serveToken', serveTokenRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
