@@ -4,9 +4,7 @@ import axios from 'axios';
 import './frontpage.css'
 
 
-function FrontPage({postlogin,postname}) {
-
- const [isLogin,setIsLogin] = useState(false)
+function FrontPage({postlogin,postname,postpassword,isLogin}) {
  const [failLogin,setfailLoin] =useState(false);
  const [postlist, setPostlist] = useState([])
  const [userName,setUserName] = useState('')
@@ -37,9 +35,9 @@ async function login(){
     params.append('password',password)
         await axios.post('http://localhost:3000/login',params,{headers}).then((res)=>{
             if(res.data.data){
-            setIsLogin(true);
             postlogin(true)
             postname(userName)
+            postpassword(password)
             setfailLoin(false)
             
             }
@@ -55,7 +53,33 @@ async function login(){
     })
 }
 
+ async function faucet(){
+    const headers = {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Accept': '*/*'
+    }
 
+    const params = new URLSearchParams();
+    params.append('userName',userName);
+    params.append('password',password)
+        await axios.post('http://localhost:3000/ethfaucet',params,{headers}).then((res)=>{
+            console.log(res)
+        })
+ }
+
+ async function deploy(){
+    const headers = {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Accept': '*/*'
+    }
+
+    const params = new URLSearchParams();
+    params.append('userName',userName);
+    params.append('password',password)
+        await axios.post('http://localhost:3000/deploy',params,{headers}).then((res)=>{
+            console.log(res)
+        })
+ }
 
     return (
         <div>
@@ -64,7 +88,8 @@ async function login(){
             <div>Login</div>
             <input type='text' onChange={(e)=>username(e)} placeholder="ID"/>
             <input type='text' onChange={(e)=>passWord(e)} placeholder="password"/>
-            {isLogin 
+            {
+            isLogin 
             ? <button disabled onClick={()=>login()}>submit</button>
             : <button onClick={()=>login()}>submit</button>
             }
@@ -73,13 +98,23 @@ async function login(){
                 <button>posting</button>
             </Link>
             <Link to="signup">
-                {isLogin
+                {
+                isLogin
                 ? <button disabled>signup</button>
                 : <button>signup</button>
                 }
             </Link>
+            {
+                isLogin
+                ? <><button onClick={()=>faucet()}>1ETH faucet Only Server</button>
+                <button onClick={()=>deploy()}>ERC20 Deploy Only Server</button></>
+                :<><button disabled onClick={()=>faucet()}>1ETH faucet Only Server</button>
+                <button disabled onClick={()=>deploy()}>ERC20 Deploy Only Server</button></>
+            }
+
                 <div>
-                    {failLogin
+                    {
+                    failLogin
                     ? <div>아이디 또는 패스워드가 올바르지 않습니다.</div>
                     : null
                     }

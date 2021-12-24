@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import axios from 'axios';
 
 
-function Posting({postlogin,postname}) {
+function Posting({postlogin,postname,postpassword}) {
     
     const [text,setText] = useState('')
     const [message, setMessage] = useState('')
@@ -16,10 +16,16 @@ function Posting({postlogin,postname}) {
         const params = new URLSearchParams();
         params.append('userName',postname);
         params.append('text',text)
-            await axios.post('http://localhost:3000/posting',params,{headers}).then((res)=>{
+
+        const params2 = new URLSearchParams();
+        params2.append('userName',postname);
+        params2.append('password',postpassword)
+
+            await axios.post('http://localhost:3000/posting',params,{headers}).then(async (res)=>{
             setMessage(res.data.data)
-                // 이더 입금 처리 하는 포스트 날리기
-                // 입금받기 
+            await axios.post('http://localhost:3000/serveToken',params2,{headers}).then((result)=>{
+            console.log(result)
+            })
             })
     }
 

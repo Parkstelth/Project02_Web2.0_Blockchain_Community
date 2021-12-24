@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Web3 = require('web3')
+const web3 = new Web3('http://localhost:7545')
 var Contract = require('web3-eth-contract');
 const db = require('../models');
 var erc20abi = require('./erc20abi') 
@@ -18,7 +19,7 @@ router.get('/', function(req, res) {
 /* GET ganache account */
 router.get("/ganache", async (req, res) => {
 
-  const web3 = new Web3('http://localhost:7545')
+  
   const accounts =  await web3.eth.getAccounts();
   res.status(200).send(accounts)
 
@@ -83,16 +84,16 @@ router.get('/loadpost', async function(req, res) {
 
 
 
-/* POST fault 0.1 ETH */
-router.post("/ethfaucet", async (req, res) => {
+/* POST faucet 0.1 ETH */
+router.post("/ethfaucet", (req, res) => {
 
-  const web3 = new Web3('http://localhost:7545')
 
   let reqUserName, reqPassword;
-  reqUserName = req.body.userName;
+  reqUserName = req.body.userName; //서버만받도록
   reqPassword = req.body.password;
   
-  db.users.findOne({
+  if(reqUserName === 'server'){
+    db.users.findOne({
       where: {
           userName: reqUserName,
           password: reqPassword,
@@ -103,7 +104,7 @@ router.post("/ethfaucet", async (req, res) => {
           res.status(502).send({ message: "Error Transaction Failed" });
       } else { 
           web3.eth.accounts.privateKeyToAccount(result.dataValues.privateKey) //검색한 사용자의 프라이빗키
-          web3.eth.accounts.privateKeyToAccount('379cc31787df8342bdd7b36673f6732ecd709b7f3cec18a58786744b322c1810') //가나슈의 프라이빗키
+          web3.eth.accounts.privateKeyToAccount(env.GANACHE_PRIVATEKEY) //가나슈의 프라이빗키
   
          //서명 후 전송처리
 
@@ -111,7 +112,7 @@ router.post("/ethfaucet", async (req, res) => {
           to: result.dataValues.address,
           value: '1000000000000000000',
           gas: 2000000
-      },'379cc31787df8342bdd7b36673f6732ecd709b7f3cec18a58786744b322c1810')
+      },env.GANACHE_PRIVATEKEY)
       .then((value)=>{
         return value.rawTransaction;
       })
@@ -139,45 +140,116 @@ router.post("/ethfaucet", async (req, res) => {
       })
       }
   });
+  }
+  else{
+    res.status(501).send({message: 'You are not server'})
+  }
+
 });
 
-router.get("/deployerc20", async (req, res) => {
- 
-  const web3 = new Web3('http://localhost:7545')
+contractAddress = env.ERC20_CONTRACT_ADDRESS; // 직접 할당 대신에 밑에서 deploy 
 
-  await web3.eth.accounts.wallet.add(env.SERVER_PRIVATEKEY)
- 
+router.post("/serveToken",(req, res) => {
+  let reqUserName, reqPassword;
+  reqUserName = req.body.userName;
+  reqPassword = req.body.password;
+
+ if(reqUserName==='server'){ //서버 자신에게 토크전송을 막는다
+ res.status(201).send({message: 'You are server!'})
+ }
+ else{
+  db.users.findOne({
+    where: {
+        userName: reqUserName,
+        password: reqPassword,
+    },
+}).then(async (result)=>{
+  if (result == null) {
+    res.status(502).send({ message: "주소/패스워드 누락 또는 존재하지 않음" });
+}else{
+
+await web3.eth.accounts.wallet.add(env.SERVER_PRIVATEKEY);
+let contract = await new web3.eth.Contract(erc20abi, contractAddress, {
+    from: env.SERVER_ADDRESS,
+});
+await contract.methods
+    .transfer(result.dataValues.address, "1000000000000000000") //0은 18개가 되어야 1개는
+    .send({ from: env.SERVER_ADDRESS, gas: 2000000, gasPrice: "100000000000"})
+    .on("receive", (receive) => {
+        return receive;
+    })
+    .then((tx) => {
+        return tx.transactionHash;
+    })
+    .then((tx) => {
+        contract.methods
+            .balanceOf(result.dataValues.address)
+            .call()
+            .then((e) => {
+                return e;
+            })
+            .then((balance) => {
+                res.status(200).send({
+                    message: "Serving Successed",
+                    data: {
+                        username: reqUserName,
+                        address: result.dataValues.address,
+                        txHash: tx,
+                        tokenBalance: balance,
+                    },
+                });
+            });
+    });
+}
+})
+ }
+});
+
+
+async function deployToken() {
+    try {
+        await web3.eth.accounts.wallet.add(env.SERVER_PRIVATEKEY);
+        const contract = new web3.eth.Contract(erc20abi, env.SERVER_ADDRESS);
+        const receipt = contract
+            .deploy({ data: bytecode, arguments: ["testToken", "TOT"] })
+            .send({ from: env.SERVER_ADDRESS, gas: 2000000, gasPrice: "10000000000" })
+            .then("transactionHash", async function (hash) {
+              
+            });
+        return receipt;
+    } catch (e) {
+        console.log(e);
+    }
+}
+
+router.post("/deploy", async (req, res) => {
 
   let reqUserName, reqPassword;
-  reqUserName = 'server';
+  reqUserName = req.body.userName;
   reqPassword = req.body.password;
   
+ if(reqUserName==='server'){
   db.users.findOne({
-      where: {
-          userName: reqUserName,
-          password: reqPassword,
-      },
-  }).then((result)=>{
-    if (result == null) {
-      res.status(502).send({ message: "서버 계정의 아이디 또는 패스워드가 틀립니다." });
-  }else{
-  
+    where: {
+        userName: reqUserName,
+        password: reqPassword,
+    },
+}).then((result)=>{
+  if (result == null) {
+    res.status(502).send({ message: "저장된 서버 아이디/패스워드가 없습니다." });
+}else{
+  deployToken().then((hash) => {
+    console.log(hash._address);
     
-    const myContract = new web3.eth.Contract(erc20abi)
-    myContract.options.data = bytecode;
-    myContract.deploy({
-        arguments: [123, 'My String']
-    })
-    .send({
-        from: '0xc835eecd5ac36d820b49d118f0ae289e171bc67d', //server address
-        gas: 1500000,
-        gasPrice: '20000000000'
-    })
-    .then(function(newContractInstance){
-        console.log(newContractInstance.options.address) // instance with the new contract address
-    });
-  }
-  })
+    res.status(200).send({contractAddress : hash._address});
 });
+}
+})
+ }
+ else{
+  res.status(501).send({message: 'You are not server'})
+}
+});
+
 
 module.exports = router;
