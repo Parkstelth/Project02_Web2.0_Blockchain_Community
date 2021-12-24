@@ -23,7 +23,7 @@ function Posting({postlogin,postname,postpassword}) {
 
             await axios.post('http://localhost:3000/posting',params,{headers}).then(async (res)=>{
             setMessage(res.data.data)
-            await axios.post('http://localhost:3000/serveToken',params2,{headers}).then((result)=>{
+            await axios.post('http://localhost:3000/servetoken',params2,{headers}).then((result)=>{
             console.log(result)
             })
             })
