@@ -17,7 +17,7 @@ function SignUp() {
     params.append('password',password)
 
     async function post(){
-        await axios.post('http://localhost:3000/sign/user',params,{headers}).then((res)=>{
+        await axios.post('http://localhost:3001/signup/user',params,{headers}).then((res)=>{
             console.log(res)
         })
     }

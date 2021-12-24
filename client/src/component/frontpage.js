@@ -10,7 +10,6 @@ function FrontPage({postlogin,postname}) {
  const [failLogin,setfailLoin] =useState(false);
  const [postlist, setPostlist] = useState([])
  const [userName,setUserName] = useState('')
- const [password,setPassword] = useState('')
 
     useEffect(()=>{
     setpost()
@@ -34,14 +33,12 @@ async function login(){
 
     const params = new URLSearchParams();
     params.append('userName',userName);
-    params.append('password',password)
-        await axios.post('http://localhost:3000/login',params,{headers}).then((res)=>{
+        await axios.post('http://localhost:3001/login',params,{headers}).then((res)=>{
             if(res.data.data){
             setIsLogin(true);
-            postlogin(true)
-            postname(userName)
-            setfailLoin(false)
-            
+            postlogin(true);
+            postname(userName);
+            setfailLoin(false);
             }
             else{
                 setfailLoin(true)
@@ -50,7 +47,7 @@ async function login(){
 }
 
  function setpost(){
-    axios.get('http://localhost:3000/loadpost').then((res)=>{
+    axios.get('http://localhost:3001/loadpost').then((res)=>{
         setPostlist(res.data)
     })
 }

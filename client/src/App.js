@@ -12,14 +12,13 @@ function App() {
 
     const [isLogin, setIsLogin] = useState(false)
     const [userName,setUserName] = useState('')
-    
 
     return (
         <BrowserRouter>
             <Routes>
-                <Route path='/' element={<FrontPage postlogin={setIsLogin} postname={setUserName}/>}/>
+                <Route path='/' element={<FrontPage postlogin={setIsLogin} postname={setUserName} />}/>
                 <Route path='/signup' element={<SignUp />}/>
-                <Route path='/posting' element={<Posting postlogin={isLogin} postname={userName}/>}/>
+                <Route path='/posting' element={<Posting postlogin={isLogin} postname={userName} />}/>
                 <Route path="/*" element={<NotFound />} />
             </Routes>
         </BrowserRouter>
