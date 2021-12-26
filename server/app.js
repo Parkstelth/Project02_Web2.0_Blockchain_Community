@@ -7,17 +7,17 @@ const cors = require('cors');
 
 var indexRouter = require('./routes/index');
 var ganacheRouter = require('./routes/ganache');
-var signInRouter = require('./routes/signin')
+var signInRouter = require('./routes/login')
 var ethFaucetRouter = require('./routes/ethfaucet');;
 var loadPostRouter = require('./routes/loadpost');
 var postingRouter = require('./routes/posting');
 var usersRouter = require('./routes/users');
-var deployERC20Router = require('./routes/deployerc20');
+var deployERC20Router = require('./routes/deploy');
 var walletRouter = require('./routes/wallet/index');
 var serveTokenRouter = require('./routes/servetoken');
 
 var app = express();
-const port = 3001;
+const port = 3000;
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -35,12 +35,12 @@ app.use('/', indexRouter);
 app.use('/ganache', ganacheRouter);
 app.use('/users', usersRouter);
 app.use('/ethfaucet', ethFaucetRouter);
-app.use('/signin', signInRouter);
+app.use('/login', signInRouter);
 app.use('/loadpost', loadPostRouter);
 app.use('/posting', postingRouter);
-app.use('/signup', walletRouter);
-app.use('/deployerc20', deployERC20Router);
-app.use('/serveToken', serveTokenRouter);
+app.use('/sign', walletRouter);
+app.use('/deploy', deployERC20Router);
+app.use('/servetoken', serveTokenRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

@@ -1,38 +1,66 @@
-.flexbox{
+input:focus {
+    outline:none;
+}
+
+.background {
+    width: 70vw;
+    background-color: white;
+}
+
+.siteTop {
+
+    width: 100%;
+    height: 9vh;
+    background-color: rgb(182, 109, 109);
+    margin-bottom: 8vh;
     display: flex;
-    border: 2px solid black;
+    justify-content:space-between;
+    align-items: center;
 }
-.flexbox.addOption{
-    border-bottom:4px solid black;
-}
+.siteLogo{
+    height: 80%;
+    width: auto;
+    object-fit: scale-down;
 
-.name{
-    width: 100px;
-    border-right:2px solid black;
+    margin: 0 0 0 2.8vw;
 }
-
-.time{
-    width: 230px;
-    border-right:2px solid black;
-}
-
-.flexbox2{
-    display: flex;
+.siteName {
+    color: rgb(255, 255, 255);
+    align-items: center;
+    font-size: 5vh;
 }
 
-.name2{
-    width: 100px;
-    border-right:2px solid black;
-    border-bottom:2px solid black;
-}
-
-.time2{
-    width: 230px;
-    border-right:2px solid black;
-    border-bottom:2px solid black;
-}
-
-.text2{
-
+.topLogin {
+    border: 0;
+    outline: 0;
+    background-color: rgb(255, 217, 208);
     
+    width: 10vw;
+    height: 5vh;
+    font-size: 3vh;
+    margin: 0 2vw 0 40vw;
+}
+
+.topLogin:hover {
+    cursor: pointer;
+}
+
+.forum {
+    display: inline-block;
+    background-color: white;
+    color:rgb(90, 25, 25);
+    font-size: 3vh;
+    width: 30vw;
+    height: 30vw;
+    margin: 2vw;
+}
+.title {
+    margin-bottom: 2vh;
+    text-decoration: underline;
+    text-underline-position: under;
+}
+
+.post {
+    margin: 0 0 0.5vh 2vw;
+    overflow: none;
 }

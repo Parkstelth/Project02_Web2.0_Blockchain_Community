@@ -1,0 +1,27 @@
+.signUpWrapper {
+    margin-top: 30vh;
+}
+
+.text {
+    color: white;
+    font-size: 10vh;
+}
+
+.input {
+    font-size: 2vw;
+    display: table;
+    border: 0;
+    border-radius: 30px;
+    width: 20vw;
+    height: 5vh;
+    padding-left: 1vw;
+    margin: 1vw 0 1vw 0;
+}
+
+.submit {
+    font-size: 2vw;
+    margin-top: 2vh;
+    border-radius: 10px;
+    width: 12vw;
+    height: 7vh;
+}

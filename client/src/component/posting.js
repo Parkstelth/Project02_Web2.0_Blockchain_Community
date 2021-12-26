@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import axios from 'axios';
 
 
-function Posting({postlogin, postname}) {
+function Posting({ postlogin, postname, postpassword }) {
     
     const [text,setText] = useState('')
     const [message, setMessage] = useState('')
@@ -15,12 +15,17 @@ function Posting({postlogin, postname}) {
     
         const params = new URLSearchParams();
         params.append('userName',postname);
-        params.append('text', text);
-            await axios.post('http://localhost:3001/posting',params,{headers}).then((res)=>{
-                setMessage(res.data.data)
+        params.append('text',text)
+
+        const params2 = new URLSearchParams();
+        params2.append('userName',postname);
+        params2.append('password',postpassword)
+
+            await axios.post('http://localhost:3000/posting',params,{headers}).then(async (res)=>{
+            setMessage(res.data.data)
+            await axios.post('http://localhost:3000/servetoken',params2,{headers}).then((result)=>{
+            console.log(postpassword);
             })
-            await axios.post('http://localhost:3001/posting',params,{headers}).then((res)=>{
-                console.log(res)
             })
     }
 

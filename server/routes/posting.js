@@ -4,7 +4,7 @@ var Web3 = require('web3');
 const db = require('../models');
 
 router.post('/', async function(req, res, next) {
-    const web3 = new Web3('http://localhost:7545')
+   
     let reqUserName, reqtext;
     reqUserName = req.body.userName;
     reqtext = req.body.text;
