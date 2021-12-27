@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Web3 = require('web3');
-const web3 = new Web3('http://localhost:7545')
+const web3 = new Web3('http://localhost:8545')
 const db = require('../models');
 var erc20abi = require('./erc20abi') 
 var bytecode = require('./bytecode');

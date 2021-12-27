@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './loginpage.css';
 
-function LoginPage({setIsLogin, username, userpassword, isLogin, LoginClick}) {
+function LoginPage({set, username, userpassword, isLogin, LoginClick}) {
     const [failLogin,setfailLoin] =useState(false);
     const [userName,setUserName] = useState('');
     const [password,setPassword] = useState('');
@@ -35,7 +35,7 @@ function LoginPage({setIsLogin, username, userpassword, isLogin, LoginClick}) {
         params.append('password',password)
             await axios.post('http://localhost:3000/login',params,{headers}).then((res)=>{
                 if(res.data.data) {
-                    setIsLogin(true);
+                    set(true);
                     username(userName);
                     userpassword(password);
                     setfailLoin(false);

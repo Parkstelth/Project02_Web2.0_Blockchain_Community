@@ -23,7 +23,7 @@ function App() {
             <BrowserRouter>
                 <Routes>
                     <Route path='/' element={<FrontPage />}/>
-                    <Route path='/login' element={<LoginPage setIsLogin={setIsLogin} username={setUserName} userpassword={setPassword} isLogin={isLogin}/>}/>
+                    <Route path='/login' element={<LoginPage set={setIsLogin} username={setUserName} userpassword={setPassword} isLogin={isLogin}/>}/>
                     <Route path='/signup' element={<SignUp />}/>
                     <Route path='/posting' element={<Posting postlogin={isLogin} postname={userName} postpassword={password}/>}/>
                     <Route path="/*" element={<NotFound />} />
