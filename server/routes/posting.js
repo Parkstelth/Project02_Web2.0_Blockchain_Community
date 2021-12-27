@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var Web3 = require('web3');
 const db = require('../models');
 
 router.post('/', async function(req, res, next) {

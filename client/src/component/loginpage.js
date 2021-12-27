@@ -3,7 +3,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './loginpage.css';
 
-function LoginPage({set, username, userpassword, isLogin, LoginClick}) {
+function LoginPage({setIsLogin, appusername, userpassword, isLogin,LoginClick, mainUsername, mainPassword}) {
+  
     const [failLogin,setfailLoin] =useState(false);
     const [userName,setUserName] = useState('');
     const [password,setPassword] = useState('');
@@ -35,8 +36,8 @@ function LoginPage({set, username, userpassword, isLogin, LoginClick}) {
         params.append('password',password)
             await axios.post('http://localhost:3000/login',params,{headers}).then((res)=>{
                 if(res.data.data) {
-                    set(true);
-                    username(userName);
+                    setIsLogin(true);
+                    appusername(userName);
                     userpassword(password);
                     setfailLoin(false);
                     console.log(res);
@@ -79,8 +80,8 @@ function LoginPage({set, username, userpassword, isLogin, LoginClick}) {
         <div className="wrapper" onClick={onCloseModal}>
             <div className="loginDiv">
                 <div>로그인</div>
-                <input className="loginInput" type='text' onChange={(e)=>username(e)} placeholder="ID"/>
-                <input className="loginInput" type='text' onChange={(e)=>passWord(e)} placeholder="password"/>
+                <input className="loginInput" type='text' onChange={(e)=>username(e)} />
+                <input className="loginInput" type='text' onChange={(e)=>passWord(e)} />
                 {
                 isLogin 
                 ? <button className="button" disabled onClick={()=>login()}>로그인</button>
