@@ -55,8 +55,8 @@ function LoginPage({setIsLogin, appusername, userpassword, isLogin,LoginClick, m
         }
     
         const params = new URLSearchParams();
-        params.append('userName',userName);
-        params.append('password',password)
+        params.append('userName',mainUsername);
+        params.append('password',mainPassword)
             await axios.post('http://localhost:3000/ethfaucet',params,{headers}).then((res)=>{
                 console.log(res)
             })
@@ -80,12 +80,22 @@ function LoginPage({setIsLogin, appusername, userpassword, isLogin,LoginClick, m
         <div className="wrapper" onClick={onCloseModal}>
             <div className="loginDiv">
                 <div>로그인</div>
-                <input className="loginInput" type='text' onChange={(e)=>username(e)} />
-                <input className="loginInput" type='text' onChange={(e)=>passWord(e)} />
+                {/* <input className="loginInput" type='text' onChange={(e)=>username(e)} />
+                <input className="loginInput" type='text' onChange={(e)=>passWord(e)} /> */}
                 {
                 isLogin 
-                ? <button className="button" disabled onClick={()=>login()}>로그인</button>
-                : <button className="button" onClick={()=>login()}>로그인</button>
+                ?
+                <> 
+                <input className="loginInput" disabled type='text' onChange={(e)=>username(e)} value={mainUsername }/>
+                <input className="loginInput" disabled type='text' onChange={(e)=>passWord(e)} value={mainPassword } />
+                <button className="button" disabled onClick={()=>login()}>로그인</button>
+                </>
+                :
+                <>
+                <input className="loginInput" type='text' onChange={(e)=>username(e)} placeholder="ID"/>
+                <input className="loginInput" type='text' onChange={(e)=>passWord(e)} placeholder="PASSWORD" />
+                <button className="button" onClick={()=>login()}>로그인</button>
+                </>
                 }
 
                 <Link to="signup">
