@@ -6,7 +6,8 @@ const env=process.env;
     password: env.PASSWORD,
     database: "User",
     host: "127.0.0.1",
-    dialect: "mysql"
+    dialect: "mysql",
+    timezone: "+09:00"
   };
 
   const test = {
@@ -14,7 +15,8 @@ const env=process.env;
     password: env.PASSWORD,
     database: "User",
     host: "127.0.0.1",
-    dialect: "mysql"
+    dialect: "mysql",
+    timezone: "+09:00"
   }
 
   const production = {
@@ -22,7 +24,8 @@ const env=process.env;
     password: env.PASSWORD,
     database: "User",
     host: "127.0.0.1",
-    dialect: "mysql"
+    dialect: "mysql",
+    timezone: "+09:00"
   }
 
 module.exports = { development, production, test}

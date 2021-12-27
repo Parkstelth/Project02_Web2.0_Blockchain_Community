@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
-import React, { useState } from 'react';
+import { generatePath, Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './loginpage.css';
 
@@ -22,7 +22,6 @@ function LoginPage({setIsLogin, appusername, userpassword, isLogin,LoginClick, m
             LoginClick();
         }
     }
-
 
     async function login(){
 
@@ -69,25 +68,38 @@ function LoginPage({setIsLogin, appusername, userpassword, isLogin,LoginClick, m
         }
     
         const params = new URLSearchParams();
-        params.append('userName',userName);
-        params.append('password',password)
+        params.append('userName',mainUsername);
+        params.append('password',mainPassword)
             await axios.post('http://localhost:3000/deploy',params,{headers}).then((res)=>{
                 console.log(res)
             })
     }
 
+        async function get(){
+        const headers = {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Accept': '*/*'
+        }
+    
+        const params = new URLSearchParams();
+        params.append('userName',mainUsername);
+        params.append('password',mainPassword)
+            await axios.post('http://localhost:3000/userinfo/getbalance',params,{headers}).then((res)=>{
+                console.log(res)
+            })
+    }
+
+
     return (
         <div className="wrapper" onClick={onCloseModal}>
             <div className="loginDiv">
                 <div>로그인</div>
-                {/* <input className="loginInput" type='text' onChange={(e)=>username(e)} />
-                <input className="loginInput" type='text' onChange={(e)=>passWord(e)} /> */}
                 {
                 isLogin 
                 ?
                 <> 
-                <input className="loginInput" disabled type='text' onChange={(e)=>username(e)} value={mainUsername }/>
-                <input className="loginInput" disabled type='text' onChange={(e)=>passWord(e)} value={mainPassword } />
+                <input className="loginInput" disabled type='text' onChange={(e)=>username(e)} value={mainUsername}/>
+                <input className="loginInput" disabled type='text' onChange={(e)=>passWord(e)} value={mainPassword} />
                 <button className="button" disabled onClick={()=>login()}>로그인</button>
                 </>
                 :
@@ -118,9 +130,12 @@ function LoginPage({setIsLogin, appusername, userpassword, isLogin,LoginClick, m
                 {
                     isLogin
                     ? <><button className="button" onClick={()=>faucet()}>1ETH faucet Only Server</button>
-                    <button className="button" onClick={()=>deploy()}>ERC20 Deploy Only Server</button></>
+                    <button className="button" onClick={()=>deploy()}>ERC20 Deploy Only Server</button>
+                    <button className="button" onClick={()=>get()}>get</button></> //getbalance테스트용
                     :<><button className="button" disabled onClick={()=>faucet()}>1ETH faucet Only Server</button>
-                    <button className="button" disabled onClick={()=>deploy()}>ERC20 Deploy Only Server</button></>
+                    <button className="button" disabled onClick={()=>deploy()}>ERC20 Deploy Only Server</button>
+                    <button className="button" onClick={()=>get()}>get</button></> //getbalance테스트용
+                    
                 }
 
                 <div>
