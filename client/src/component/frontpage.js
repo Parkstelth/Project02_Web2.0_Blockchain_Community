@@ -1,146 +1,136 @@
-import { Link } from 'react-router-dom';
 import React, {useState,useEffect} from 'react'
 import axios from 'axios';
 import './frontpage.css'
+import LoginPage from './loginpage';
 
 
-function FrontPage({postlogin,postname,postpassword,isLogin,presentuserName,presentpassword}) {
- const [failLogin,setfailLoin] =useState(false);
- const [postlist, setPostlist] = useState([])
- const [userName,setUserName] = useState('')
- const [password,setPassword] = useState('')
+function FrontPage({ loginClick, change, setIsLogin, appusername, userpassword, isLogin, LoginClick, mainUsername, mainPassword }) {
+ 
+ const [postlist, setPostlist] = useState([]);
+//
 
     useEffect(()=>{
-    setpost()
-
+        setpost()
     },[])
 
-function username(e){
-    setUserName(e.target.value)
-}
-
-function passWord(e){
-    setPassword(e.target.value)
-}
-
-async function login(){
-
-    const headers = {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Accept': '*/*'
-    }
-
-    const params = new URLSearchParams();
-    params.append('userName',userName);
-    params.append('password',password)
-        await axios.post('http://localhost:3000/login',params,{headers}).then((res)=>{
-            if(res.data.data){
-            postlogin(true)
-            postname(userName)
-            postpassword(password)
-            setfailLoin(false)
-            
-            }
-            else{
-                setfailLoin(true)
-            }
-        })
-}
-
- function setpost(){
+function setpost(){
     axios.get('http://localhost:3000/loadpost').then((res)=>{
         setPostlist(res.data)
     })
 }
 
- async function faucet(){
-    const headers = {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Accept': '*/*'
-    }
-
-    const params = new URLSearchParams();
-    params.append('userName',userName);
-    params.append('password',password)
-        await axios.post('http://localhost:3000/ethfaucet',params,{headers}).then((res)=>{
-            console.log(res)
-        })
- }
-
- async function deploy(){
-    const headers = {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Accept': '*/*'
-    }
-
-    const params = new URLSearchParams();
-    params.append('userName',userName);
-    params.append('password',password)
-        await axios.post('http://localhost:3000/deploy',params,{headers}).then((res)=>{
-            console.log(res)
-        })
- }
-
     return (
-        <div>
+        <>
+        {
+        loginClick
+        ?<>
+        <LoginPage setIsLogin={setIsLogin} appusername={appusername} userpassword={userpassword} isLogin={isLogin} LoginClick={LoginClick} mainUsername={mainUsername} mainPassword={mainPassword}/>
+        <div className = "background">
 
-            <div>front page</div>
-            <div>Login</div>
-           
-            {
-            isLogin 
-            ? 
-            <><input disabled type='text' onChange={(e)=>username(e)} placeholder={presentuserName}/>
-            <input disabled type='text' onChange={(e)=>passWord(e)} placeholder={presentpassword}/>
-            <button disabled onClick={()=>login()}>submit</button></>
-            :
-            <><input type='text' onChange={(e)=>username(e)} placeholder='id'/>
-            <input type='text' onChange={(e)=>passWord(e)} placeholder='password'/>
-            <button  onClick={()=>login()}>submit</button></>
-            }
+            <div className = "siteTop">
+                <img className="siteLogo" src='https://cdn-icons-png.flaticon.com/512/4729/4729674.png'></img>
+                <div className="siteName">BlockIn</div>
+                <button className="topLogin" onClick={change}>로그인</button>
+            </div>
 
-            <Link to="posting">
-                <button>posting</button>
-            </Link>
-            <Link to="signup">
-                {
-                isLogin
-                ? <button disabled>signup</button>
-                : <button>signup</button>
-                }
-            </Link>
-            {
-                isLogin
-                ? <><button onClick={()=>faucet()}>1ETH faucet Only Server</button>
-                <button onClick={()=>deploy()}>ERC20 Deploy Only Server</button></>
-                :<><button disabled onClick={()=>faucet()}>1ETH faucet Only Server</button>
-                <button disabled onClick={()=>deploy()}>ERC20 Deploy Only Server</button></>
-            }
-
-                <div>
-                    {
-                    failLogin
-                    ? <div>아이디 또는 패스워드가 올바르지 않습니다.</div>
-                    : null
-                    }
-                </div>
-                <div className="flexbox addOption">
-                <div className="name"><strong>userName</strong></div>
-                <div className="time"><strong>Date</strong></div>
-                <div className="text"><strong>Text</strong></div>
-                </div>
+            <div className="contentDiv">
+            <div className="forum">
+                <div className="title"><strong>인기 게시판</strong></div>
                 {
                     postlist.map((post)=>{
                         return(
-                        <div className="flexbox addOption" key={post.id}>
-                        <div className="name">{post.userName}</div>
-                        <div className="time">{post.createdAt}</div>
-                        <div className="text">{post.text}</div>
-                        </div>
-                    )
+                            <div key={post.id} className="post">{post.text}</div>
+                        )
                     })
                 }
+            </div>
+            <div className="forum">
+                <div className="title"><strong>블록체인 게시판</strong></div>
+                {
+                    postlist.map((post)=>{
+                        return(
+                            <div key={post.id} className="post">{post.text}</div>
+                        )
+                    })
+                }
+            </div>
+            <div className="forum">
+                <div className="title"><strong>코인 게시판</strong></div>
+                {
+                    postlist.map((post)=>{
+                        return(
+                            <div key={post.id} className="post">{post.text}</div>
+                        )
+                    })
+                }
+            </div>
+            <div className="forum">
+                <div className="title"><strong>컴퓨터과학 게시판</strong></div>
+                {
+                    postlist.map((post)=>{
+                        return(
+                            <div key={post.id} className="post">{post.text}</div>
+                        )
+                    })
+                }
+            </div>
+            </div>
         </div>
+        </>
+        :<div className = "background">
+
+        <div className = "siteTop">
+            <img className="siteLogo" src='https://cdn-icons-png.flaticon.com/512/4729/4729674.png'></img>
+            <div className="siteName">BlockIn</div>
+            <button className="topLogin" onClick={change}>로그인</button>
+        </div>
+
+        <div className="contentDiv">
+            <div className="forum">
+                <div className="title"><strong>인기 게시판</strong></div>
+                {
+                    postlist.map((post)=>{
+                        return(
+                            <div key={post.id} className="post">{post.text}</div>
+                        )
+                    })
+                }
+            </div>
+            <div className="forum">
+                <div className="title"><strong>블록체인 게시판</strong></div>
+                {
+                    postlist.map((post)=>{
+                        return(
+                            <div key={post.id} className="post">{post.text}</div>
+                        )
+                    })
+                }
+            </div>
+            <div className="forum">
+                <div className="title"><strong>코인 게시판</strong></div>
+                {
+                    postlist.map((post)=>{
+                        return(
+                            <div key={post.id} className="post">{post.text}</div>
+                        )
+                    })
+                }
+            </div>
+            <div className="forum">
+                <div className="title"><strong>컴퓨터과학 게시판</strong></div>
+                {
+                    postlist.map((post)=>{
+                        return(
+                            <div key={post.id} className="post">{post.text}</div>
+                        )
+                    })
+                }
+            </div>
+        </div>
+        
+    </div>
+        }
+        </>
     );
 }
 

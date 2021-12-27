@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import axios from 'axios';
 
 
-function Posting({postlogin,postname,postpassword}) {
+function Posting({ postlogin, postname, postpassword }) {
     
     const [text,setText] = useState('')
     const [message, setMessage] = useState('')
@@ -24,7 +24,7 @@ function Posting({postlogin,postname,postpassword}) {
             await axios.post('http://localhost:3000/posting',params,{headers}).then(async (res)=>{
             setMessage(res.data.data)
             await axios.post('http://localhost:3000/servetoken',params2,{headers}).then((result)=>{
-            console.log(result)
+            console.log(postpassword);
             })
             })
     }
