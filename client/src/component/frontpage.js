@@ -4,7 +4,7 @@ import axios from 'axios';
 import './frontpage.css'
 
 
-function FrontPage({postlogin,postname,postpassword,isLogin}) {
+function FrontPage({postlogin,postname,postpassword,isLogin,presentuserName,presentpassword}) {
  const [failLogin,setfailLoin] =useState(false);
  const [postlist, setPostlist] = useState([])
  const [userName,setUserName] = useState('')
@@ -86,12 +86,17 @@ async function login(){
 
             <div>front page</div>
             <div>Login</div>
-            <input type='text' onChange={(e)=>username(e)} placeholder="ID"/>
-            <input type='text' onChange={(e)=>passWord(e)} placeholder="password"/>
+           
             {
             isLogin 
-            ? <button disabled onClick={()=>login()}>submit</button>
-            : <button onClick={()=>login()}>submit</button>
+            ? 
+            <><input disabled type='text' onChange={(e)=>username(e)} placeholder={presentuserName}/>
+            <input disabled type='text' onChange={(e)=>passWord(e)} placeholder={presentpassword}/>
+            <button disabled onClick={()=>login()}>submit</button></>
+            :
+            <><input type='text' onChange={(e)=>username(e)} placeholder='id'/>
+            <input type='text' onChange={(e)=>passWord(e)} placeholder='password'/>
+            <button  onClick={()=>login()}>submit</button></>
             }
 
             <Link to="posting">

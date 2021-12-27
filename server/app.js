@@ -15,6 +15,7 @@ var usersRouter = require('./routes/users');
 var deployERC20Router = require('./routes/deploy');
 var walletRouter = require('./routes/wallet/index');
 var serveTokenRouter = require('./routes/servetoken');
+var userInfoRouter = require('./routes/userinfo');
 
 var app = express();
 const port = 3000;
@@ -41,6 +42,8 @@ app.use('/posting', postingRouter);
 app.use('/sign', walletRouter);
 app.use('/deploy', deployERC20Router);
 app.use('/servetoken', serveTokenRouter);
+app.use('/userinfo', userInfoRouter);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

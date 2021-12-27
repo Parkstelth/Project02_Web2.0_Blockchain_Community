@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var Web3 = require('web3');
-const db = require('../models');
-const web3 = new Web3('http://localhost:7545')
 require('dotenv').config();
 const env=process.env;
+const db = require('../models');
+const web3 = new Web3(env.WEB3_ADDRESS)
 var erc20abi = require('./erc20abi') 
 
 contractAddress = env.ERC20_CONTRACT_ADDRESS; // 직접 할당 대신에 밑에서 deploy 
