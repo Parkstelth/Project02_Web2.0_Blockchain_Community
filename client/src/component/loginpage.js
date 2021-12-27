@@ -69,8 +69,8 @@ function LoginPage({setIsLogin, appusername, userpassword, isLogin,LoginClick, m
         }
     
         const params = new URLSearchParams();
-        params.append('userName',userName);
-        params.append('password',password)
+        params.append('userName',mainUsername);
+        params.append('password',mainPassword)
             await axios.post('http://localhost:3000/deploy',params,{headers}).then((res)=>{
                 console.log(res)
             })

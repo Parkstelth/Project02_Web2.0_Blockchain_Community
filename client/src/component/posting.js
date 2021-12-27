@@ -21,10 +21,10 @@ function Posting({ postlogin, postname, postpassword }) {
         params2.append('userName',postname);
         params2.append('password',postpassword)
 
-            await axios.post('http://localhost:3000/posting',params,{headers}).then(async (res)=>{
-            setMessage(res.data.data)
-            await axios.post('http://localhost:3000/servetoken',params2,{headers}).then((result)=>{
-            console.log(postpassword);
+            await axios.post('http://localhost:3000/posting',params,{headers}).then( async (res)=>{
+                setMessage(res.data.data)
+            await axios.post('http://localhost:3000/servetoken',params2,{headers}).then( async (res)=>{
+                console.log(res.tokenBalance);
             })
             })
     }
