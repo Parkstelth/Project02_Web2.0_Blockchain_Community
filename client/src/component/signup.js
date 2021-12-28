@@ -8,6 +8,7 @@ function SignUp() {
     
     const [userName,setUserName] = useState('')
     const [password,setPassword] = useState('')
+    const [exist,setExist] = useState('')
     
     const headers = {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -21,6 +22,12 @@ function SignUp() {
     async function post(){
         await axios.post('http://localhost:3000/sign/user',params,{headers}).then((res)=>{
             console.log(res);
+            if(res.data=="User exists"){
+                setExist(true)
+            }
+            else{
+                setExist(false)
+            }
         })
     }
 
@@ -28,10 +35,27 @@ function SignUp() {
         <div className="signUpWrapper">
             <div className="text">signup</div>
             <input className="input" type='text' onChange={(e)=>setUserName(e.target.value)} placeholder="ID"/>
-            <input className="input" type='text' onChange={(e)=>setPassword(e.target.value)} placeholder="password"/>
-            <Link to="/">
+            <input className="input" type='password' onChange={(e)=>setPassword(e.target.value)} placeholder="password"/>
+            {
+                exist===true
+                ? <div className="addoption">이미 존재 하는 아이디입니다.</div>
+                : null
+            }
+            {
+                exist===false
+                ?<div className="flex"> 
+                <div className="addoption">계정 생성 완료!</div>
+                <Link to='/'>
+                <button className="return">HOME</button>
+                </Link>
+                </div>
+                : null 
+            }
+
+
+            <div className="flex addoption">
             <button className="submit" onClick={()=>post()}>가입하기</button>
-            </Link>
+            </div>
         </div>
     )
 }

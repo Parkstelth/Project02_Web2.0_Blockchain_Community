@@ -39,7 +39,7 @@ function LoginPage({setIsLogin, appusername, userpassword, isLogin,LoginClick, m
                     appusername(userName);
                     userpassword(password);
                     setfailLoin(false);
-                    console.log(res);
+                    
                 }
                 else{
                     setfailLoin(true)
@@ -75,7 +75,7 @@ function LoginPage({setIsLogin, appusername, userpassword, isLogin,LoginClick, m
             })
     }
 
-        async function get(){
+        async function get(){ //테스트용
         const headers = {
             'Content-Type': 'application/x-www-form-urlencoded',
             'Accept': '*/*'
@@ -85,6 +85,20 @@ function LoginPage({setIsLogin, appusername, userpassword, isLogin,LoginClick, m
         params.append('userName',mainUsername);
         params.append('password',mainPassword)
             await axios.post('http://localhost:3000/userinfo/getbalance',params,{headers}).then((res)=>{
+                console.log(res)
+            })
+    }
+    async function allowance(){ //테스트용
+        const headers = {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Accept': '*/*'
+        }
+    
+        const params = new URLSearchParams();
+        params.append('userName',mainUsername);
+        params.append('receiveName','jason')
+        params.append('amount',1)
+            await axios.post('http://localhost:3000/userinfo/sendallowance',params,{headers}).then((res)=>{
                 console.log(res)
             })
     }
@@ -99,13 +113,13 @@ function LoginPage({setIsLogin, appusername, userpassword, isLogin,LoginClick, m
                 ?
                 <> 
                 <input className="loginInput" disabled type='text' onChange={(e)=>username(e)} value={mainUsername}/>
-                <input className="loginInput" disabled type='text' onChange={(e)=>passWord(e)} value={mainPassword} />
+                <input className="loginInput" disabled type='password' onChange={(e)=>passWord(e)} value={mainPassword} />
                 <button className="button" disabled onClick={()=>login()}>로그인</button>
                 </>
                 :
                 <>
                 <input className="loginInput" type='text' onChange={(e)=>username(e)} placeholder="ID"/>
-                <input className="loginInput" type='text' onChange={(e)=>passWord(e)} placeholder="PASSWORD" />
+                <input className="loginInput" type='password' onChange={(e)=>passWord(e)} placeholder="PASSWORD" />
                 <button className="button" onClick={()=>login()}>로그인</button>
                 </>
                 }
@@ -131,10 +145,12 @@ function LoginPage({setIsLogin, appusername, userpassword, isLogin,LoginClick, m
                     isLogin
                     ? <><button className="button" onClick={()=>faucet()}>1ETH faucet Only Server</button>
                     <button className="button" onClick={()=>deploy()}>ERC20 Deploy Only Server</button>
-                    <button className="button" onClick={()=>get()}>get</button></> //getbalance테스트용
+                    <button className="button" onClick={()=>get()}>get</button> 
+                    <button className="button" onClick={()=>allowance()}>allow</button></> //getbalance테스트용
                     :<><button className="button" disabled onClick={()=>faucet()}>1ETH faucet Only Server</button>
                     <button className="button" disabled onClick={()=>deploy()}>ERC20 Deploy Only Server</button>
-                    <button className="button" onClick={()=>get()}>get</button></> //getbalance테스트용
+                    <button className="button" onClick={()=>get()}>get</button> 
+                    <button className="button" onClick={()=>allowance()}>allow</button></> //getbalance테스트용
                     
                 }
 
