@@ -31,6 +31,17 @@ input:focus {
     font-size: 5vh;
 }
 
+.topButton {
+    font-size: 2vh;
+    background-color: rgb(255, 217, 208);
+    width: 5vw;
+    height: 5vh;
+    margin-left: 30vw;
+}
+.topButton:hover {
+    cursor: pointer;
+}
+
 .topLogin {
     border: 0;
     outline: 0;
@@ -39,7 +50,7 @@ input:focus {
     width: 10vw;
     height: 5vh;
     font-size: 2vh;
-    margin: 0 2vw 0 40vw;
+    margin: 0 2vw 0 0;
 }
 
 .topLogin:hover {

@@ -95,13 +95,8 @@ function LoginPage({loginModal, setIsLogin, appusername, userpassword, isLogin, 
             <div className="loginDiv">
                 <div>로그인</div>
                 {
-                isLogin 
-                ?
-                <> 
-                <input className="loginInput" disabled type='text' onChange={(e)=>username(e)} value={mainUsername}/>
-                <input className="loginInput" disabled type='text' onChange={(e)=>passWord(e)} value={mainPassword} />
-                <button className="button" disabled onClick={()=>login()}>로그인</button>
-                </>
+                isLogin && userName != "server"
+                ? loginModal()
                 :
                 <>
                 <input className="loginInput" type='text' onChange={(e)=>username(e)} placeholder="ID"/>
@@ -111,30 +106,17 @@ function LoginPage({loginModal, setIsLogin, appusername, userpassword, isLogin, 
                 }
 
                 <Link to="signup">
-                    {
-                    isLogin
-                    ? <button className="button" disabled>회원가입</button>
-                    : <button className="button">회원가입</button>
-                    }
+                    <button className="button">회원가입</button>
                 </Link>
 
-                <Link to="posting">
-                    {
-                    isLogin
-                    ? <button className="button">글쓰기</button>
-                    : <button disabled className="button">글쓰기</button>
-                    }
-                    
-                </Link>
-                
                 {
-                    isLogin
+                    isLogin && userName == "server"
                     ? <><button className="button" onClick={()=>faucet()}>1ETH faucet Only Server</button>
                     <button className="button" onClick={()=>deploy()}>ERC20 Deploy Only Server</button>
                     <button className="button" onClick={()=>get()}>get</button></> //getbalance테스트용
-                    :<><button className="button" disabled onClick={()=>faucet()}>1ETH faucet Only Server</button>
-                    <button className="button" disabled onClick={()=>deploy()}>ERC20 Deploy Only Server</button>
-                    <button className="button" onClick={()=>get()}>get</button></> //getbalance테스트용
+                    :<><button className="button" style={{display: "none"}} onClick={()=>faucet()}>1ETH faucet Only Server</button>
+                    <button className="button" style={{display: "none"}} onClick={()=>deploy()}>ERC20 Deploy Only Server</button>
+                    <button className="button" style={{display: "none"}} onClick={()=>get()}>get</button></> //getbalance테스트용
                     
                 }
 

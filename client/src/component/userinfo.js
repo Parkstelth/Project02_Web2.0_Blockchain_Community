@@ -17,12 +17,12 @@ function UserInfo({ myPageModal }) {
                     <div className="tokenCheck">
                         <div>보유 토큰 확인</div>
                         <div>1000</div>
-                        <button className="button" onClick={''}>새로고침</button>
+                        <button className="userInfoButton" onClick={''}>새로고침</button>
                     </div>
                     <div className="tokenSendDiv">토큰 보내기        
                         <input className="tokenSendInput" type="text" placeholder='보내는 사람'></input>
                         <input className="tokenSendInput" type="text" placeholder='수량'></input>
-                        <button className="button" onClick={''}>토큰 보내기</button>              
+                        <button className="userInfoButton" onClick={''}>토큰 보내기</button>              
                     </div>
                 </div>                
             </div>
