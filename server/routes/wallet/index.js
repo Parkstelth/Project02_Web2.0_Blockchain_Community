@@ -24,7 +24,7 @@ router.post('/user', async(req,res) => {
   .then(([user, created]) => {
     if (!created) {
       // 있으면 있다고 응답
-      res.status(409).send("User exists");
+      res.status(201).send("User exists");
     // 없으면 DB에 저장
     } else {
       // 니모닉코드 생성  
