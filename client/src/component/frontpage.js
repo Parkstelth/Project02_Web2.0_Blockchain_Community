@@ -1,6 +1,7 @@
 import React, {useState,useEffect} from 'react'
+import { Link } from 'react-router-dom';
 import axios from 'axios';
-import './frontpage.css'
+import './frontpage.css';
 import LoginPage from './loginpage';
 import UserInfo from './userinfo';
 
@@ -33,6 +34,14 @@ function setpost(){
             <div className = "siteTop">
                 <img className="siteLogo" src='https://cdn-icons-png.flaticon.com/512/4729/4729674.png'></img>
                 <div className="siteName">BlockIn</div>
+                <Link to="posting" onClick={loginModal}>
+                    {
+                    isLogin
+                    ? <button className="topButton">글쓰기</button>
+                    : <button style={{visibility: "hidden"}} className="topButton">글쓰기</button>
+                    }
+                    
+                </Link>
                 {!isLogin
                 ? <button className="topLogin" onClick={loginModal}>로그인</button>
                 : <button className="topLogin" onClick={myPageModal}>마이페이지</button>}   
