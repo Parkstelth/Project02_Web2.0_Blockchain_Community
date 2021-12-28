@@ -15,23 +15,27 @@ function App() {
     const [userName,setUserName] = useState('');
     const [password,setPassword] = useState('');
     const [loginClick, setLoginClick] = useState(false);
-    
-    function change(){
-        setLoginClick(!loginClick)
+    const [myPageClick, setMyPageClick] = useState(false);
+
+    function loginModal() {
+        setLoginClick(!loginClick);
+    }
+
+    function myPageModal() {
+        setMyPageClick(!myPageClick);
     }
 
     return (
-
         <div className="App">
             <BrowserRouter>
                 <Routes>
-                    <Route path='/' element={<FrontPage loginClick={loginClick} change={change}
-                    setIsLogin={setIsLogin} appusername={setUserName} userpassword={setPassword} isLogin={isLogin} LoginClick={change}
-                    mainUsername={userName} mainPassword={password}
+                    <Route path='/' element={<FrontPage loginClick={loginClick} loginModal={loginModal} setLoginClick={setLoginClick} myPageClick={myPageClick} myPageModal={myPageModal}
+                    setIsLogin={setIsLogin} appusername={setUserName} userpassword={setPassword} isLogin={isLogin}
+                    mainUsername={userName} mainPassword={password} 
                     />}/>
                     <Route path='/signup' element={<SignUp />}/>
                     <Route path='/posting' element={<Posting postlogin={isLogin} postname={userName} postpassword={password}/>}/>
-                    <Route path="/*" element={<NotFound />} />
+                    <Route path="/*" element={<NotFound />}/>
                 </Routes>
             </BrowserRouter>
         </div>
