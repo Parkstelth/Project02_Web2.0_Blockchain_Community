@@ -40,6 +40,19 @@ db.users.findOne({
 });
 })
 
+router.get("/getsymbol", async (req, res) => {
+  let contract = await new web3.eth.Contract(erc20abi, env.ERC20_CONTRACT_ADDRESS, {
+    from: env.SERVER_ADDRESS,
+     });
+  const symbol = await contract.methods._symbol().call();
+  
+  res.status(200).send({data:symbol})  
+
+})
+
+
+
+
 router.post("/sendallowance", async (req, res) => {
   let reqName, recName, sendAmount, reqAddress
   reqName = req.body.userName;
@@ -122,19 +135,16 @@ router.post("/sendallowance", async (req, res) => {
         else{
           res.status(201).send({message:'가진 양 보다 많은 토큰을 전송 할 수 없습니다.'})
         }
-      
-
      }catch (e) {
          console.log(e);
          return e;
      }
-        
     }
   });
   })
 
 
-  //res.status(200).send({balance:web3.utils.fromWei(balance,'ether')}) 
+
 
 
 
