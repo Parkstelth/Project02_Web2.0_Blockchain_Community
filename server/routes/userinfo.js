@@ -6,7 +6,6 @@ const env=process.env;
 const web3 = new Web3(env.WEB3_ADDRESS)
 var erc20abi = require('./erc20abi') 
 const db = require('../models');
-const e = require('express');
 
 
 router.post("/getbalance", async (req, res) => {
@@ -35,7 +34,6 @@ db.users.findOne({
        console.log(e);
        return e;
    }
-      
   }
 });
 })
@@ -45,13 +43,8 @@ router.get("/getsymbol", async (req, res) => {
     from: env.SERVER_ADDRESS,
      });
   const symbol = await contract.methods._symbol().call();
-  
   res.status(200).send({data:symbol})  
-
 })
-
-
-
 
 router.post("/sendallowance", async (req, res) => {
   let reqName, recName, sendAmount, reqAddress
@@ -59,7 +52,6 @@ router.post("/sendallowance", async (req, res) => {
   recName = req.body.receiveName
   sendAmount = req.body.amount;
 
- 
   db.users.findOne({ //전송자 주소 검색
     where: {
         userName: reqName,
@@ -86,7 +78,6 @@ router.post("/sendallowance", async (req, res) => {
         const receiveBalance = await contract.methods.allowance(env.SERVER_ADDRESS,result.dataValues.address).call();
         const transAmount = web3.utils.toWei(String(sendAmount),'ether')
       
-
         if(senderBalance>=transAmount){
           //처리시작
           const changeSender = parseInt(senderBalance)-parseInt(transAmount);

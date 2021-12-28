@@ -8,7 +8,6 @@ router.get('/', async function(req, res, next) {
         for (let i=0 ; i<res.length;i++) {
             allpost.push(res[i].dataValues)
         }
-
     })
     res.status(200).send(allpost)
 })

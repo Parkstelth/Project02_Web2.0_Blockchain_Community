@@ -1,6 +1,4 @@
-
 import './App.css';
-
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import FrontPage from './component/frontpage';
 import Posting from './component/posting';
@@ -9,7 +7,6 @@ import NotFound from './component/notfound'
 import React, { useState, useEffect } from 'react'
 
 function App() {
-
 
     const [isLogin, setIsLogin] = useState(false);
     const [userName,setUserName] = useState('');

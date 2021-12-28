@@ -52,7 +52,6 @@ function SignUp() {
                 : null 
             }
 
-
             <div className="flex addoption">
             <button className="submit" onClick={()=>post()}>가입하기</button>
             </div>

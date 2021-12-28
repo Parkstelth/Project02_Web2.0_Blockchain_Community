@@ -19,8 +19,6 @@ router.post('/', function(req, res) {
             res.status(201).send({ data: true });
         }
     })
-  
-  
   });
   
   module.exports = router;
