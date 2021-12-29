@@ -73,6 +73,20 @@ function LoginPage({loginModal, setIsLogin, appusername, userpassword, isLogin, 
                 console.log(res)
             })
     }
+        
+    async function deploy721(){
+        const headers = {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Accept': '*/*'
+        }
+    
+        const params = new URLSearchParams();
+        params.append('userName',mainUsername);
+        params.append('password',mainPassword);
+            await axios.post('http://localhost:3000/minterc721',params,{headers}).then((res)=>{
+                console.log(res)
+            })
+    }
 
     return (
         <div className="wrapper" onClick={onCloseModal}>
@@ -97,9 +111,11 @@ function LoginPage({loginModal, setIsLogin, appusername, userpassword, isLogin, 
                     isLogin && userName == "server"
                     ? <><button className="button" onClick={()=>faucet()}>1ETH faucet Only Server</button>
                     <button className="button" onClick={()=>deploy()}>ERC20 Deploy Only Server</button>
+                    <button className="button" onClick={()=>deploy721()}>ERC721 Deploy Only Server</button>
                     </> 
                     :<><button className="button" disabled onClick={()=>faucet()}>1ETH faucet Only Server</button>
                     <button className="button" disabled onClick={()=>deploy()}>ERC20 Deploy Only Server</button>
+                    <button className="button" disabled onClick={()=>deploy721()}>ERC721 Deploy Only Server</button>
                     </> 
                 }
 
