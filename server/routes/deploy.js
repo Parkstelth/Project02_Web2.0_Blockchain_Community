@@ -42,7 +42,6 @@ router.post("/", async (req, res) => {
 }else{
   deployToken().then((hash) => {
     console.log(hash._address);
-    
     res.status(200).send({contractAddress : hash._address});
 });
 }

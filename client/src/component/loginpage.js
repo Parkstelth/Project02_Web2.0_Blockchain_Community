@@ -8,6 +8,7 @@ function LoginPage({loginModal, setIsLogin, appusername, userpassword, isLogin, 
     const [failLogin,setfailLoin] =useState(false);
     const [userName,setUserName] = useState('');
     const [password,setPassword] = useState('');
+    const [message,setMessange] = useState('Not Ready!')
     
     function username(e){
         setUserName(e.target.value);
@@ -70,7 +71,7 @@ function LoginPage({loginModal, setIsLogin, appusername, userpassword, isLogin, 
         params.append('userName',mainUsername);
         params.append('password',mainPassword)
             await axios.post('http://localhost:3000/deploy',params,{headers}).then((res)=>{
-                console.log(res)
+                setMessange(res.data.contractAddress)
             })
     }
         
@@ -84,9 +85,10 @@ function LoginPage({loginModal, setIsLogin, appusername, userpassword, isLogin, 
         params.append('userName',mainUsername);
         params.append('password',mainPassword);
             await axios.post('http://localhost:3000/minterc721',params,{headers}).then((res)=>{
-                console.log(res)
+                setMessange(res.data.contractAddress)
             })
     }
+
 
     return (
         <div className="wrapper" onClick={onCloseModal}>
@@ -97,21 +99,40 @@ function LoginPage({loginModal, setIsLogin, appusername, userpassword, isLogin, 
                 ? loginModal()
                 :
                 <>
+                {
+                    isLogin
+                    ?<>
+                <input disabled className="loginInput" type='text' onChange={(e)=>username(e)} placeholder="ID"/>
+                <input disabled className="loginInput" type='password' onChange={(e)=>passWord(e)} placeholder="PASSWORD" />
+                <button disabled className="button" onClick={()=>login()}>로그인</button>
+                    </>
+                    :<>
                 <input className="loginInput" type='text' onChange={(e)=>username(e)} placeholder="ID"/>
                 <input className="loginInput" type='password' onChange={(e)=>passWord(e)} placeholder="PASSWORD" />
                 <button className="button" onClick={()=>login()}>로그인</button>
+                    </>
+                }
                 </>
                 }
-
+                {
+                isLogin
+                ? <>
                 <Link to="signup">
+                    <button disabled className="button">회원가입</button>
+                </Link>
+                </>
+                : <>
+                 <Link to="signup">
                     <button className="button">회원가입</button>
                 </Link>
-
+                </>
+                }
                 {
                     isLogin && userName == "server"
                     ? <><button className="button" onClick={()=>faucet()}>1ETH faucet Only Server</button>
                     <button className="button" onClick={()=>deploy()}>ERC20 Deploy Only Server</button>
                     <button className="button" onClick={()=>deploy721()}>ERC721 Deploy Only Server</button>
+                    <div className="contract">Deploy Address : {message}</div>
                     </> 
                     :<><button className="button" disabled onClick={()=>faucet()}>1ETH faucet Only Server</button>
                     <button className="button" disabled onClick={()=>deploy()}>ERC20 Deploy Only Server</button>

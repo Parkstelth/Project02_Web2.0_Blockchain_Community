@@ -15,7 +15,7 @@
 }
 
 .postTitle {
-    font-size: 2vw;
+    font-size: 1.2vw;
     width: 47vw;
     height: 5vh;
     border: none;
@@ -40,4 +40,5 @@
     border: none;
     border-radius: 20px;
     font-size: 5vh;
+    cursor: pointer;
 }

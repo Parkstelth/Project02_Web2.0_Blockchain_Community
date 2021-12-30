@@ -21,6 +21,20 @@ function setpost(){
     })
 }
 
+async function buy(){
+    const headers = {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Accept': '*/*'
+    }
+
+    const params = new URLSearchParams();
+    params.append('userName',mainUsername);
+    params.append('password',mainPassword);
+        await axios.post('http://localhost:3000/minterc721/buynft',params,{headers}).then((res)=>{
+            console.log(res)
+        })
+}
+
     return (
         <>
         {loginClick 
@@ -34,14 +48,25 @@ function setpost(){
             <div className = "siteTop">
                 <img className="siteLogo" src='https://cdn-icons-png.flaticon.com/512/4729/4729674.png'></img>
                 <div className="siteName">BlockIn</div>
-                <Link to="posting" onClick={loginModal}>
                     {
                     isLogin
-                    ? <button className="topButton">글쓰기</button>
-                    : <button style={{visibility: "hidden"}} className="topButton">글쓰기</button>
+                    ? 
+                    <>
+                    <Link to="posting" onClick={loginModal}>
+                    <button className="topButton">글쓰기</button>
+                    </Link>
+                    <button className="button" onClick={()=>buy()}>buy nft</button>
+                    </>
+                    : 
+                    <>
+                    <Link to="posting" onClick={loginModal}>
+                    <button style={{visibility: "hidden"}} className="topButton">글쓰기</button>
+                    </Link>
+                    <button style={{visibility: "hidden"}} className="button" onClick={()=>buy()}>buy nft</button>
+                    </>
                     }
                     
-                </Link>
+              
                 {!isLogin
                 ? <button className="topLogin" onClick={loginModal}>로그인</button>
                 : <button className="topLogin" onClick={myPageModal}>마이페이지</button>}   
