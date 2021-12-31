@@ -74,6 +74,21 @@ function UserInfo({ mainUsername,mainPassword,myPageModal }) {
             })
     }
 
+    async function sendtometamask(){ //테스트용
+        const headers = {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Accept': '*/*'
+        }
+    
+        const params = new URLSearchParams();
+        params.append('userName',mainUsername);
+        params.append('password',mainPassword)
+            await axios.post('http://localhost:3000/userinfo/sendtometamask',params,{headers}).then((res)=>{
+            console.log(res)
+
+            })
+    }
+
     return (
         <div className="wrapper" onClick={onCloseModal}>
             <div className="myPageDiv">마이페이지
@@ -89,7 +104,8 @@ function UserInfo({ mainUsername,mainPassword,myPageModal }) {
                         <input className="tokenSendInput" onChange={changeto} type="text" placeholder='받는 사람'></input>
                         <input className="tokenSendInput" onChange={changevalue} type="text" placeholder='수량'></input>
                         <div className="result">{message}</div>
-                        <button className="button addoption" onClick={()=>allowance()}>토큰 보내기</button>              
+                        <button className="button addoption" onClick={()=>allowance()}>토큰 보내기</button>    
+                        <button className="button addoption" onClick={()=>sendtometamask()}>메타마스크 토큰 보내기</button>           
                     </div>
                 </div>                
             </div>
