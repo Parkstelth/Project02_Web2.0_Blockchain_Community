@@ -37,7 +37,7 @@
     display: flex;
     align-items: center;
     border-top: 3px solid rgb(73, 49, 49);
-    margin: 2vh 0 0 3vw;
+    margin: 1.5vh 0 0 3vw;
     padding-top: 10vh;
     font-size: 4vh;
 }
@@ -46,7 +46,7 @@
     background-color: rgb(226, 191, 183);
     width: 20vw;
     border-radius: 20px;
-    margin: 2vw;
+    margin: 1.5vw;
     padding: 8vh 2vw 8vh 2vw;
 }
 
@@ -81,6 +81,7 @@
 
 .button.addoption{
     margin-top:10px;
+    color: black;
 }
 
 .result{
