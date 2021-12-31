@@ -12,7 +12,6 @@ router.post("/",(req, res) => {
     let reqUserName, reqPassword;
     reqUserName = req.body.userName;
     reqPassword = req.body.password;
-    console.log(reqUserName,reqPassword)
     
     db.users.findOne({
       where: {
@@ -37,7 +36,6 @@ router.post("/",(req, res) => {
                   }).then(async (balance)=>{
                     const changeBalance = parseInt(web3.utils.fromWei(balance,'ether'))+1
                     const changeBalance2 = web3.utils.toWei(String(changeBalance),'ether')
-                   
                     await contract.methods.approve(result.dataValues.address, changeBalance2)
                     .send({ from: env.SERVER_ADDRESS, gas: 2000000, gasPrice: "100000000000"})
                     .on("receive", (receive) => {

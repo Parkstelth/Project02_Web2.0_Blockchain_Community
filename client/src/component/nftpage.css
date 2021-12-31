@@ -2,7 +2,7 @@
 
 .nftPageWrapper {
     font-weight: 700;
-    margin-left: 20%;
+    margin-left: 15%;
     width: 100vw;
     height: 100vh;
 }
@@ -24,7 +24,7 @@
     font-size: 2vh;
     color: rgb(83, 63, 30);
     background-color: rgb(255, 212, 219);
-    width: 60vw;
+    width: 65vw;
     height: 95vh;
     padding: 5vh 0 0 6vh;
 }

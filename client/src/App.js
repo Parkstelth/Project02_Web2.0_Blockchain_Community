@@ -23,6 +23,7 @@ function App() {
         setMyPageClick(!myPageClick);
     }
 
+
     return (
         <div className="App">
             <BrowserRouter>

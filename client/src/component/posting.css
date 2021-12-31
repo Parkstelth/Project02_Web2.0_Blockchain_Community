@@ -4,18 +4,18 @@
 
 .postContents {
     background-color: rgb(207, 162, 157);
-    width: 50vw;
+    width: 60vw;
     height: 95vh;
-    padding: 5vh 0 0 2.5vh;
+    padding: 5vh 0 0 15vh;
 }
 
 .postText {
     color: white;
-    font-size: 5vh;
+    font-size: 4vh;
 }
 
 .postTitle {
-    font-size: 2vw;
+    font-size: 1.2vw;
     width: 47vw;
     height: 5vh;
     border: none;
@@ -40,4 +40,5 @@
     border: none;
     border-radius: 20px;
     font-size: 5vh;
+    cursor: pointer;
 }

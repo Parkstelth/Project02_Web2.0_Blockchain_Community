@@ -1,4 +1,11 @@
+body { -webkit-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none }
+
+a {
+    text-decoration-line: none;
+}
+
 .App {
+    user-select: fixed;
     background-color: rgb(100, 83, 83);
     display: flex;
     justify-content: center;

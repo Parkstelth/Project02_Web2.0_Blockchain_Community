@@ -35,19 +35,16 @@ function setpost(){
             <div className = "siteTop">
                 <img className="siteLogo" src='https://cdn-icons-png.flaticon.com/512/4729/4729674.png'></img>
                 <div className="siteName">BlockIn</div>
-                <Link to="posting" onClick={loginModal}>
-                    {
-                    isLogin
-                    ? <button className="topButton">글쓰기</button>
-                    : <button style={{visibility: "hidden"}} className="topButton">글쓰기</button>
-                    }
-                    
-                </Link>
+                {
+                isLogin
+                ? <Link to="posting" onClick={loginModal}><button className="topButton">글쓰기</button></Link>
+                : <button style={{visibility: "hidden"}} className="topButton">글쓰기</button>
+                }
                 <Link to='NFTPage'>
                     {
                     !isLogin
                     ? <button className="topLogin">NFT</button>
-                    : <button sytle={{visibility: "hidden"}} className="topLogin">NFT</button>
+                    : <button className="topLogin">NFT</button>
                     }
                 </Link>
                 {!isLogin
@@ -96,6 +93,27 @@ function setpost(){
                     })
                 }
             </div>
+            <div className="forum">
+                <div className="title"><strong>컴퓨터과학 게시판</strong></div>
+                {
+                    postlist.map((post)=>{
+                        return(
+                            <div key={post.id} className="post">{post.text}</div>
+                        )
+                    })
+                }
+            </div>
+            <div className="forum">
+                <div className="title"><strong>컴퓨터과학 게시판</strong></div>
+                {
+                    postlist.map((post)=>{
+                        return(
+                            <div key={post.id} className="post">{post.text}</div>
+                        )
+                    })
+                }
+            </div>
+            <div className='footer'></div>
             </div>
         </div>
         </>
