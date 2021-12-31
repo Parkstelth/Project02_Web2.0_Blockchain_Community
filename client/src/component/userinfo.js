@@ -80,16 +80,20 @@ function UserInfo({ mainUsername,mainPassword,myPageModal }) {
             <button className="myPageBack" onClick={myPageModal}>뒤로가기</button>  
                 <div className="myPageContents">
                     <div className="tokenCheck">
-                        <div>보유 토큰 확인</div>
+                        <div>보유 포인트 확인</div>
                         <div>{presentBalance} {symbole}</div>
                         <button className="button" onClick={()=>get()}>새로고침</button>
-                      
+                        <div>보유 토큰 확인</div>
+                        <button className="button" onClick={''}>새로고침</button>
                     </div>
-                    <div className="tokenSendDiv">토큰 전송       
+                    <div className="tokenSendDiv">포인트 전송       
                         <input className="tokenSendInput" onChange={changeto} type="text" placeholder='받는 사람'></input>
                         <input className="tokenSendInput" onChange={changevalue} type="text" placeholder='수량'></input>
                         <div className="result">{message}</div>
-                        <button className="button addoption" onClick={()=>allowance()}>토큰 보내기</button>              
+                        <button className="button addoption" onClick={()=>allowance()}>포인트 보내기</button>  
+                        <div>포인트를 토큰으로 전환</div>
+                        <input className="tokenSendInput" onChange={''} type="text" placeholder='수량'></input>
+                        <button className="button addoption" onClick={''}>토큰 보내기</button> 
                     </div>
                 </div>                
             </div>
