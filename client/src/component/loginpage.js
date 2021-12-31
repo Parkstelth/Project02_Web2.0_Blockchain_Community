@@ -39,7 +39,6 @@ function LoginPage({loginModal, setIsLogin, appusername, userpassword, isLogin, 
                     appusername(userName);
                     userpassword(password);
                     setfailLoin(false);
-                    
                 }
                 else{
                     setfailLoin(true)
@@ -102,7 +101,6 @@ function LoginPage({loginModal, setIsLogin, appusername, userpassword, isLogin, 
                     :<><button className="button" disabled onClick={()=>faucet()}>1ETH faucet Only Server</button>
                     <button className="button" disabled onClick={()=>deploy()}>ERC20 Deploy Only Server</button>
                     </> 
-                    
                 }
 
                 <div>

@@ -7,7 +7,6 @@ const web3 = new Web3(env.WEB3_ADDRESS)
 
 router.get("/", async (req, res) => {
 
-    const web3 = new Web3('http://localhost:8545')
     const accounts =  await web3.eth.getAccounts();
     res.status(200).send(accounts)
   });

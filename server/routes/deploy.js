@@ -3,13 +3,10 @@ var router = express.Router();
 require('dotenv').config();
 const env=process.env;
 var Web3 = require('web3');
-const web3 = new Web3('http://localhost:8545')
 const db = require('../models');
+const web3 = new Web3(env.WEB3_ADDRESS)
 var erc20abi = require('./erc20abi') 
 var bytecode = require('./bytecode');
-
-
-
 
 async function deployToken() {
     try {

@@ -1,15 +1,13 @@
-
 import './App.css';
-
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import FrontPage from './component/frontpage';
 import Posting from './component/posting';
 import SignUp from './component/signup';
-import NotFound from './component/notfound'
-import React, { useState, useEffect } from 'react'
+import NFTPage from './component/nftpage';
+import NotFound from './component/notfound';
+import React, { useState, useEffect } from 'react';
 
 function App() {
-
 
     const [isLogin, setIsLogin] = useState(false);
     const [userName,setUserName] = useState('');
@@ -35,6 +33,7 @@ function App() {
                     />}/>
                     <Route path='/signup' element={<SignUp />}/>
                     <Route path='/posting' element={<Posting postlogin={isLogin} postname={userName} postpassword={password}/>}/>
+                    <Route path="/nftpage" element={<NFTPage />}/>
                     <Route path="/*" element={<NotFound />}/>
                 </Routes>
             </BrowserRouter>

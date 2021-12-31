@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import React, { useState,useEffect } from 'react';
 import axios from 'axios';
 import './userinfo.css';
@@ -16,6 +15,12 @@ function UserInfo({ mainUsername,mainPassword,myPageModal }) {
         get();
         getsymbol();
     },[])
+
+    useEffect(()=>{
+        get();
+        getsymbol();
+       
+    },[symbole])
 
     const onCloseModal = (e) => {
         if (e.target === e.currentTarget) {
@@ -47,7 +52,6 @@ function UserInfo({ mainUsername,mainPassword,myPageModal }) {
     }
 
     async function getsymbol(){ 
-
             await axios.get('http://localhost:3000/userinfo/getsymbol').then((res)=>{
                 setSymbole(res.data.data)
             })
@@ -69,8 +73,6 @@ function UserInfo({ mainUsername,mainPassword,myPageModal }) {
                 get();
             })
     }
-
-
 
     return (
         <div className="wrapper" onClick={onCloseModal}>

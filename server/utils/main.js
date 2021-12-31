@@ -11,15 +11,8 @@ const checkedBlockNum = Number(
 	}),
 );
 
-const contractAddress = fs.readFileSync(
-	path.join(basePath, '/utils/deployedAddress'),
-	{
-		encoding: 'utf-8',
-	},
-);
-
 const Web3 = require('web3');
-const web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'));
+const web3 = new Web3(new Web3.providers.HttpProvider(env.WEB3_ADDRESS));
 const allTransactions = [];
 let lastest = checkedBlockNum;
 
@@ -56,7 +49,7 @@ const getLastestTransactions = async () => {
 				.then((data) => {
 					const result = [];
 					for (let tx of data) {
-						if (tx.from === contractAddress || tx.to === contractAddress) {
+						if (tx.from === env.ERC20_CONTRACT_ADDRESS || tx.to === env.ERC20_CONTRACT_ADDRESS) {
 							result.push(tx);
 						}
 					}

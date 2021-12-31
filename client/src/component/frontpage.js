@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './frontpage.css';
 import LoginPage from './loginpage';
+import NFTPage from './nftpage';
 import UserInfo from './userinfo';
 
 
@@ -41,6 +42,13 @@ function setpost(){
                     : <button style={{visibility: "hidden"}} className="topButton">글쓰기</button>
                     }
                     
+                </Link>
+                <Link to='NFTPage'>
+                    {
+                    !isLogin
+                    ? <button className="topLogin">NFT</button>
+                    : <button sytle={{visibility: "hidden"}} className="topLogin">NFT</button>
+                    }
                 </Link>
                 {!isLogin
                 ? <button className="topLogin" onClick={loginModal}>로그인</button>
