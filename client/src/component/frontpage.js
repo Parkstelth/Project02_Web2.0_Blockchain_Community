@@ -54,21 +54,11 @@ function FrontPage({ loginClick, loginModal, myPageClick, myPageModal, setIsLogi
 
             <div className="contentDiv">
             <div className="forum">
-                <div className="title"><strong>인기 게시판</strong></div>
-                {
-                    postlist.map((post)=>{
-                        return(
-                            <Link to={'/'+ post.id}><div key={post.id} className="post">{post.text}</div></Link>
-                        )
-                    })
-                }
-            </div>
-            <div className="forum">
                 <div className="title"><strong>블록체인 게시판</strong></div>
                 {
                     postlist.map((post)=>{
                         return(
-                            <Link to={'/'+ post.id}><div key={post.id} className="post">{post.text}</div></Link>
+                            <Link to={'/'+ post.id}><div key={post.id} className="post">{post.title}</div></Link>
                         )
                     })
                 }
@@ -78,7 +68,7 @@ function FrontPage({ loginClick, loginModal, myPageClick, myPageModal, setIsLogi
                 {
                     postlist.map((post)=>{
                         return(
-                            <div key={post.id} className="post">{post.text}</div>
+                            <Link to={'/'+ post.id}><div key={post.id} className="post">{post.text}</div></Link>
                         )
                     })
                 }
@@ -94,7 +84,7 @@ function FrontPage({ loginClick, loginModal, myPageClick, myPageModal, setIsLogi
                 }
             </div>
             <div className="forum">
-                <div className="title"><strong>컴퓨터과학 게시판</strong></div>
+                <div className="title"><strong>컴퓨터 게시판</strong></div>
                 {
                     postlist.map((post)=>{
                         return(
@@ -104,7 +94,17 @@ function FrontPage({ loginClick, loginModal, myPageClick, myPageModal, setIsLogi
                 }
             </div>
             <div className="forum">
-                <div className="title"><strong>컴퓨터과학 게시판</strong></div>
+                <div className="title"><strong>깔깔유머 게시판</strong></div>
+                {
+                    postlist.map((post)=>{
+                        return(
+                            <div key={post.id} className="post">{post.text}</div>
+                        )
+                    })
+                }
+            </div>
+            <div className="forum">
+                <div className="title"><strong>고민상담 게시판</strong></div>
                 {
                     postlist.map((post)=>{
                         return(

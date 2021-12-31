@@ -41,6 +41,14 @@ function Posting({ postlogin, postname, postpassword }) {
             <div className="postContents">  
                 <Link to="/" style={{color: "white", fontSize: "2vh"}}>뒤로가기</Link>
                 <div className="postText">유저이름 : {postname}</div>
+                <select name="class">
+                    <option value="0">블록체인 게시판</option>
+                    <option value="1">코인 게시판</option>
+                    <option value="2">컴퓨터 과학 게시판</option>
+                    <option value="3">컴퓨터 게시판</option>
+                    <option value="4">깔깔유머 게시판</option>
+                    <option value="5">고민상담 게시판</option>
+                </select>
                 <textarea className="postTitle" onChange={null} placeholder="제목"></textarea>
                 <textarea className="postArticle" onChange={(e)=>setText(e.target.value)} placeholder="내용을 적어주세요"></textarea>
                 <div className="postText">RESULT : {message}</div>

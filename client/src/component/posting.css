@@ -15,7 +15,7 @@
 }
 
 .postTitle {
-    font-size: 1.2vw;
+    font-size: 2vw;
     width: 47vw;
     height: 5vh;
     border: none;
@@ -25,9 +25,9 @@
 }
 
 .postArticle {
-    font-size: 1vw;
+    font-size: 1.5vw;
     width: 47vw;
-    height: 62vh;
+    height: 60vh;
     border: none;
     outline: none;
     resize: none;
