@@ -19,6 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     address: DataTypes.STRING,
     privateKey: DataTypes.STRING,
     mnemonic:DataTypes.STRING,
+    tokenbalance:DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'users',

@@ -49,7 +49,7 @@ router.post('/user', async(req,res) => {
             address: address,
             privateKey: prv_key,
             mnemonic: mnemonic,
-            
+            tokenbalance : 0
           }, {
             where: {
               userName: reqUserName
