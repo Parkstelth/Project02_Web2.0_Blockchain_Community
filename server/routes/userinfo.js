@@ -42,6 +42,43 @@ router.post("/getbalance", async (req, res) => {
   });
 })
 
+
+router.post("/getmetabalance", async (req, res) => {
+  let reqUserName, reqPassword;
+  reqUserName = req.body.userName;
+  reqPassword = req.body.password;
+
+  db.users.findOne({
+    where: {
+      userName: reqUserName,
+      password: reqPassword,
+    },
+  }).then(async (result) => {
+    if (result == null) {
+      res.status(502).send({
+        message: "주소/패스워드 누락 또는 존재하지 않음"
+      });
+    } else {
+
+      try {
+        let contract = await new web3.eth.Contract(erc20abi, env.ERC20_CONTRACT_ADDRESS, {
+          from: env.SERVER_ADDRESS,
+        });
+        const balance = await contract.methods.balanceOf(result.dataValues.address).call();
+
+        res.status(200).send({
+          balance: web3.utils.fromWei(balance, 'ether')
+        })
+      } catch (e) {
+        console.log(e);
+        return e;
+      }
+    }
+  });
+})
+
+
+
 router.get("/getsymbol", async (req, res) => {
   let contract = await new web3.eth.Contract(erc20abi, env.ERC20_CONTRACT_ADDRESS, {
     from: env.SERVER_ADDRESS,
@@ -165,7 +202,7 @@ router.post("/sendtometamask", async (req, res) => {
   let reqUserName, reqPassword, reqsendAmount;
   reqUserName = req.body.userName;
   reqPassword = req.body.password;
-  reqsendAmount = 1;
+  reqsendAmount = req.body.amount
 
   db.users.findOne({
     where: {
@@ -223,7 +260,7 @@ router.post("/sendtometamask", async (req, res) => {
                   })
                   .then((balance) => {
                     res.status(200).send({
-                      message: "Serving Successed",
+                      message: '전송 완료',
                       data: {
                         username: reqUserName,
                         address: result.dataValues.address,
