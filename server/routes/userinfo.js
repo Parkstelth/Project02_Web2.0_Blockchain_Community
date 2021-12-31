@@ -59,7 +59,12 @@ router.post("/sendallowance", async (req, res) => {
   reqName = req.body.userName;
   recName = req.body.receiveName
   sendAmount = req.body.amount;
-
+ if(reqName===recName){
+  res.status(201).send({
+    message: "자기 자신에게 보낼 수 없습니다."
+  });
+ }
+ else{
   db.users.findOne({ //전송자 주소 검색
     where: {
       userName: reqName,
@@ -151,6 +156,7 @@ router.post("/sendallowance", async (req, res) => {
       }
     }
   });
+ }
 })
 
 

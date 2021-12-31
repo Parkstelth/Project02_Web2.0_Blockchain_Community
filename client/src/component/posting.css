@@ -4,14 +4,14 @@
 
 .postContents {
     background-color: rgb(207, 162, 157);
-    width: 50vw;
-    height: 100vh;
-    padding: 5vh 0 0 2.5vh;
+    width: 60vw;
+    height: 95vh;
+    padding: 5vh 0 0 15vh;
 }
 
 .postText {
     color: white;
-    font-size: 5vh;
+    font-size: 4vh;
 }
 
 .postTitle {
