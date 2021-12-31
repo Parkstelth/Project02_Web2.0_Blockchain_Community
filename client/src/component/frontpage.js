@@ -8,19 +8,19 @@ import UserInfo from './userinfo';
 
 
 function FrontPage({ loginClick, loginModal, myPageClick, myPageModal, setIsLogin, appusername, userpassword, isLogin, mainUsername, mainPassword }) {
- 
- const [postlist, setPostlist] = useState([]);
+
+    const [postlist, setPostlist] = useState([]);
 //
 
     useEffect(()=>{
         setpost()
     },[])
 
-function setpost(){
-    axios.get('http://localhost:3000/loadpost').then((res)=>{
-        setPostlist(res.data)
-    })
-}
+    function setpost(){
+        axios.get('http://localhost:3000/loadpost').then((res)=>{
+            setPostlist(res.data)
+        })
+    }
 
     return (
         <>
@@ -58,7 +58,7 @@ function setpost(){
                 {
                     postlist.map((post)=>{
                         return(
-                            <div key={post.id} className="post">{post.text}</div>
+                            <Link to={'/'+ post.id}><div key={post.id} className="post">{post.text}</div></Link>
                         )
                     })
                 }
@@ -68,7 +68,7 @@ function setpost(){
                 {
                     postlist.map((post)=>{
                         return(
-                            <div key={post.id} className="post">{post.text}</div>
+                            <Link to={'/'+ post.id}><div key={post.id} className="post">{post.text}</div></Link>
                         )
                     })
                 }

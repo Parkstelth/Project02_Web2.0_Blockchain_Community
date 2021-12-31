@@ -1,6 +1,7 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import FrontPage from './component/frontpage';
+import PostPage from './component/postpage';
 import Posting from './component/posting';
 import SignUp from './component/signup';
 import NFTPage from './component/nftpage';
@@ -32,6 +33,7 @@ function App() {
                     setIsLogin={setIsLogin} appusername={setUserName} userpassword={setPassword} isLogin={isLogin}
                     mainUsername={userName} mainPassword={password} 
                     />}/>
+                    <Route path='/:id' element={<PostPage />}/>
                     <Route path='/signup' element={<SignUp />}/>
                     <Route path='/posting' element={<Posting postlogin={isLogin} postname={userName} postpassword={password}/>}/>
                     <Route path="/nftpage" element={<NFTPage />}/>

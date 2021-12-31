@@ -2,6 +2,7 @@ body { -webkit-user-select:none; -moz-user-select:none; -ms-user-select:none; us
 
 a {
     text-decoration-line: none;
+    color:rgb(90, 25, 25);
 }
 
 .App {
