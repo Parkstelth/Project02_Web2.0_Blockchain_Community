@@ -70,7 +70,7 @@
 
 .bidList {
     font-size: 2vw;
-    margin: 3vh 0 3vh 15vw;
+    margin: 1vh 0 3vh 15vw;
 }
 
 .bidText {
@@ -91,16 +91,14 @@
     border: none;
     margin: 0 0 0 0.3vw;
     border-radius: 7vw;
-    width: 6vw;
+    width: 13vw;
     height: 4vh;
-    background-color: thistle;
+    font-weight: 700;
+    color: rgb(121, 43, 7);
+    background-color: rgb(255, 212, 219);
 }
 
-.bidButton:active {
-    background-color: rgb(187, 150, 187);
-}
-
-.topButton.addoption{
-    margin-top:10px;
-    width: 150px;
+.bidButton:hover {
+    background-color: rgba(255, 179, 190, 0.774);
+    cursor: pointer;
 }

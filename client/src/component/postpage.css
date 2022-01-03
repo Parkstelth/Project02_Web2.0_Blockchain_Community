@@ -1,80 +1,33 @@
-.postWrapper {
+.thispostWrapper {
+    font-weight: 700;
+    margin-left: 13%;
+    width: 100vw;
     height: 100vh;
 }
 
-.postContents {
-    background-color: rgb(207, 162, 157);
+.thispostContents {
+    font-size: 2vh;
+    color: rgb(83, 63, 30);
+    background-color: rgb(255, 255, 255);
     width: 60vw;
-    height: 95vh;
-
+    height: 92%;
+    padding: 8vh 12vh 0 12vh;
 }
 
-.postContents.addoption{
-    padding:1vh 10vh;
+.thispostInfo {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 3vh;
 }
 
-.postText {
-    color: white;
+.thispostTitle {
     font-size: 6vh;
+    border-bottom: 2vh solid rgb(182, 109, 109);
 }
 
-.postTitle {
-    font-size: 1.2vw;
-    width: 47vw;
-    height: 5vh;
-    border: none;
-    outline: none;
-    resize: none;
-    padding-left: 1vw;
-  
+.thispostTime {
+    font-size: 2vh;
 }
-.postTitle.addoption{
-    border-bottom: 2px solid bisque;
-    height: 10vh;
-    width: 100%;
-    padding-left: 0px;
-    text-align: left;
-    color:white;
-}
-
-
-.postArticle {
-    font-size: 1vw;
-    width: 47vw;
-    height: 62vh;
-    border: none;
-    outline: none;
-    resize: none;
-    padding-left: 0vw;
-    text-align: left;
- 
-}
-
-.postArticle.addoption{
-    padding-left: 0vh;
-    text-align: left;
-    color:white;
-}
-
-
-.postSend {
-    background-color: rgb(153, 90, 102);
-    color:rgb(255, 229, 209);
-    border: none;
-    border-radius: 20px;
-    font-size: 5vh;
-    cursor: pointer;
-}
-
-.textarea{
-    border:2px solid bisque;
-    margin-top:20px;
-}
-
-.to{
-    color: white;
-    font-Size: 2vh;
-    width: 30px;
-    border:2px solid orange;
-    border-radius: 15px;
+.thispostText {
+    font-size: 3vh;
 }

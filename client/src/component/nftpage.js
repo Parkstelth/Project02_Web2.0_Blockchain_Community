@@ -73,7 +73,7 @@ function NFTPage({nftprice, symbole, userName, password}) {
                     {
                         userName!=='' && password!==''
                         ? <button className="topButton addoption" onClick={()=>buynft()}>구매 하기</button>
-                        : <button disabled className="topButton addoption" onClick={()=>buynft()}>로그인이 필요합니다</button>
+                        : <button disabled className="bidButton" onClick={()=>buynft()}>로그인이 필요합니다</button>
                     }
                         <div className="message">{message}</div>
                         <div className="message">{tx}</div>

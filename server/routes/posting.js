@@ -3,13 +3,12 @@ var router = express.Router();
 const db = require('../models');
 
 router.post('/', async function(req, res, next) {
-   
-    let reqUserName, reqtext;
+    
+    let reqUserName, reqtext, reqtitle, reqclass;
     reqUserName = req.body.userName;
     reqtext = req.body.text;
     reqtitle = req.body.title;
     reqclass = req.body.class;
-   
     db.users.findOne({
         where: {
             userName: reqUserName,
@@ -22,7 +21,7 @@ router.post('/', async function(req, res, next) {
             userName: reqUserName,
             text: reqtext,
             title: reqtitle,
-            class: reqclass
+            class: reqclass,
         })
         res.status(201).send({ data : 'your post saved' });
         }

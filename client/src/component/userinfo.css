@@ -38,7 +38,7 @@
     align-items: center;
     border-top: 3px solid rgb(73, 49, 49);
     margin: 1.5vh 0 0 3vw;
-    padding-top: 10vh;
+    padding-top: 6vh;
     font-size: 4vh;
 }
 
@@ -47,15 +47,14 @@
     width: 20vw;
     border-radius: 20px;
     margin: 1.5vw;
-    padding: 8vh 2vw 8vh 2vw;
+    padding: 4vh 2vw 8vh 2vw;
 }
 
 .tokenSendDiv {
     background-color: rgb(226, 191, 183);
     width: 35vw;
     border-radius: 20px;
-    margin: 10px;
-    padding: 2.2vh;
+    padding: 2.1vh;
 }
 
 .tokenSendInput {

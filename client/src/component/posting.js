@@ -55,10 +55,13 @@ function Posting({ postlogin, postname, postpassword }) {
                 <div className="postText">유저이름 : {postname}</div>
                 <form>
                     <select onChange={(e)=>combobox(e)} name="language" >
-                        <option value="defaultvalue">=== 선택 ===</option>
-                        <option value="blockchain">블록체인</option>
-                        <option value="coin">코인</option>
-                        <option value="free">자유</option>
+                        <option value="defaultvalue">-게시판-</option>
+                        <option value="0">블록체인 게시판</option>
+                        <option value="1">코인 게시판</option>
+                        <option value="2">컴퓨터 게시판</option>
+                        <option value="3">음악 게시판</option>
+                        <option value="4">깔깔유머 게시판</option>
+                        <option value="5">게임 게시판</option>
                     </select>
                 </form>
                 <textarea className="postTitle" onChange={(e)=>title(e)} placeholder="제목"></textarea>
