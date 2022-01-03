@@ -66,8 +66,21 @@ router.post("/", async (req, res) => {
   }
 });
 
-// 서버의 nft 유저 구매 부분
+// 서버의 nft 가격 확인 부분
+router.get("/getnftprice", async (req, res) => {
+  await web3.eth.accounts.wallet.add(env.SERVER_PRIVATEKEY);
+  let contract = await new web3.eth.Contract(erc721abi, env.ERC721_CONTRACT_ADDRESS, {
+    from: env.SERVER_ADDRESS,
+  });
+  await contract.methods
+        .price()
+        .call()
+        .then((price) => {
+          res.status(201).send({price: web3.utils.fromWei(price,'ether')})
+        })
 
+})
+// 서버의 nft 유저 구매 부분)
 router.post("/buynft", async (req, res) => {
 
   let reqUserName, reqPassword;

@@ -91,13 +91,14 @@
     border: none;
     margin: 0 0 0 0.3vw;
     border-radius: 7vw;
-    width: 15vw;
-    height: 8vh;
+    width: 13vw;
+    height: 4vh;
     font-weight: 700;
-    background-color: thistle;
+    color: rgb(121, 43, 7);
+    background-color: rgb(255, 212, 219);
 }
 
 .bidButton:hover {
-    background-color: rgb(187, 150, 187);
+    background-color: rgba(255, 179, 190, 0.774);
     cursor: pointer;
 }

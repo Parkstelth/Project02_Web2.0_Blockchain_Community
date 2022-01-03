@@ -43,11 +43,11 @@
 .contract{
     margin-top:3px;
     margin-left:8px;
-    width: 490px;
+    margin-right: 3vw;
     color:black;
-    border:2px solid orangered;
+    background-color: rgba(255, 255, 255, 0.801);
     border-radius: 30px;
     text-align: center;
-    font-size: 1rem;
+    font-size: 0.7rem;
 
 }

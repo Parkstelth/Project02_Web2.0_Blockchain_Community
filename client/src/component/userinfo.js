@@ -4,7 +4,7 @@ import './userinfo.css';
 
 
 
-function UserInfo({ mainUsername,mainPassword,myPageModal }) {
+function UserInfo({ mainUsername,mainPassword,myPageModal,symbole }) {
     const [presentBalance,setPresentBalance] = useState(0)
     const [presentMetaBalance,setPresentMetaBalance] = useState(0)
     const [to, setTo] = useState('')
@@ -13,18 +13,18 @@ function UserInfo({ mainUsername,mainPassword,myPageModal }) {
     const [message,setMessage] = useState('')
     const [message2,setMessage2] = useState('')
     const [txmessage2,setTxmessage2] = useState('')
-    const [symbole, setSymbole] = useState('')
+ 
 
     useEffect(()=>{
         get();
         getmeta();
-        getsymbol();
+  
     },[])
 
     useEffect(()=>{
         get();
         getmeta();
-        getsymbol();
+   
        
     },[symbole])
 
@@ -78,11 +78,6 @@ function UserInfo({ mainUsername,mainPassword,myPageModal }) {
             })
     }
 
-    async function getsymbol(){ 
-            await axios.get('http://localhost:3000/userinfo/getsymbol').then((res)=>{
-                setSymbole(res.data.data)
-            })
-    }
 
 
     async function allowance(){ 

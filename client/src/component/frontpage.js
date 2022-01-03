@@ -7,7 +7,7 @@ import NFTPage from './nftpage';
 import UserInfo from './userinfo';
 
 
-function FrontPage({ loginClick, loginModal, myPageClick, myPageModal, setIsLogin, appusername, userpassword, isLogin, mainUsername, mainPassword }) {
+function FrontPage({ loginClick, loginModal, myPageClick, myPageModal, setIsLogin, appusername, userpassword, isLogin, mainUsername, mainPassword, setPostid, symbole }) {
 
     const [postlist, setPostlist] = useState([]);
 //
@@ -22,13 +22,26 @@ function FrontPage({ loginClick, loginModal, myPageClick, myPageModal, setIsLogi
         })
     }
 
+    const listdivide = (num) => { 
+        const mylist = postlist.filter((post) => {
+            return post.class == num;
+        })
+        if(mylist.length > 10) {
+            return mylist.slice(-10); 
+        } else {
+            return mylist;
+        }
+    }
+
+
+    console.log(postlist);
     return (
         <>
         {loginClick 
         ? <LoginPage loginModal={loginModal} setIsLogin={setIsLogin} appusername={appusername} userpassword={userpassword} isLogin={isLogin} mainUsername={mainUsername} mainPassword={mainPassword}/>
         : ''}
         {myPageClick
-        ? <UserInfo myPageModal={myPageModal} setIsLogin={setIsLogin} appusername={appusername} userpassword={userpassword} isLogin={isLogin} mainUsername={mainUsername} mainPassword={mainPassword}/>
+        ? <UserInfo myPageModal={myPageModal} setIsLogin={setIsLogin} appusername={appusername} userpassword={userpassword} isLogin={isLogin} mainUsername={mainUsername} mainPassword={mainPassword} symbole={symbole}/>
         : ''}
         <div className = "background">
 
@@ -53,68 +66,81 @@ function FrontPage({ loginClick, loginModal, myPageClick, myPageModal, setIsLogi
                 </div>
 
             <div className="contentDiv">
-            <div className="forum">
-                <div className="title"><strong>블록체인 게시판</strong></div>
-                {
-                    postlist.map((post)=>{
-                        return(
-                            <Link to={'/'+ post.id}><div key={post.id} className="post">{post.title}</div></Link>
-                        )
-                    })
-                }
-            </div>
-            <div className="forum">
-                <div className="title"><strong>코인 게시판</strong></div>
-                {
-                    postlist.map((post)=>{
-                        return(
-                            <Link to={'/'+ post.id}><div key={post.id} className="post">{post.text}</div></Link>
-                        )
-                    })
-                }
-            </div>
-            <div className="forum">
-                <div className="title"><strong>컴퓨터과학 게시판</strong></div>
-                {
-                    postlist.map((post)=>{
-                        return(
-                            <div key={post.id} className="post">{post.text}</div>
-                        )
-                    })
-                }
-            </div>
-            <div className="forum">
-                <div className="title"><strong>컴퓨터 게시판</strong></div>
-                {
-                    postlist.map((post)=>{
-                        return(
-                            <div key={post.id} className="post">{post.text}</div>
-                        )
-                    })
-                }
-            </div>
-            <div className="forum">
-                <div className="title"><strong>깔깔유머 게시판</strong></div>
-                {
-                    postlist.map((post)=>{
-                        return(
-                            <div key={post.id} className="post">{post.text}</div>
-                        )
-                    })
-                }
-            </div>
-            <div className="forum">
-                <div className="title"><strong>고민상담 게시판</strong></div>
-                {
-                    postlist.map((post)=>{
-                        return(
-                            <div key={post.id} className="post">{post.text}</div>
-                        )
-                    })
-                }
+                <div className="forum">
+                    <div className="title"><strong>블록체인 게시판</strong>
+                        {
+                            listdivide(0).map((post)=>{
+                                return(
+                                    <Link to={'/'+ post.id} onClick={()=>setPostid(post.id)} key={post.id}><div className="post">{post.title}</div></Link>
+                                )
+                            })
+                        }
+                    </div>
+                </div>
+
+                <div className="forum">
+                    <div className="title"><strong>코인 게시판</strong>
+                        {
+                            listdivide(1).map((post)=>{
+                                return(
+                                    <Link to={'/'+ post.id} onClick={()=>setPostid(post.id)} key={post.id}><div className="post">{post.title}</div></Link>
+                                )
+                            })
+                        }
+                    </div>
+                </div>
+
+                <div className="forum">
+                    <div className="title"><strong>컴퓨터 게시판</strong>
+                        {
+                            listdivide(2).map((post)=>{
+                                return(
+                                    <Link to={'/'+ post.id} onClick={()=>setPostid(post.id)} key={post.id}><div className="post">{post.title}</div></Link>
+                                )
+                            })
+                        }
+                    </div>
+                </div>
+
+                <div className="forum">
+                    <div className="title"><strong>음악 게시판</strong>
+                        {
+                            listdivide(0).map((post)=>{
+                                return(
+                                    <Link to={'/'+ post.id} onClick={()=>setPostid(post.id)} key={post.id}><div className="post">{post.title}</div></Link>
+                                )
+                            })
+                        }
+                    </div>
+                </div>
+
+                <div className="forum">
+                    <div className="title"><strong>깔깔유머 게시판</strong>
+                        {
+                            listdivide(0).map((post)=>{
+                                return(
+                                    <Link to={'/'+ post.id} onClick={()=>setPostid(post.id)} key={post.id}><div className="post">{post.title}</div></Link>
+                                )
+                            })
+                        }
+                    </div>
+                </div>
+
+                <div className="forum">
+                    <div className="title"><strong>게임 게시판</strong>
+                        {
+                            listdivide(0).map((post)=>{
+                                return(
+                                    <Link to={'/'+ post.id} onClick={()=>setPostid(post.id)} key={post.id}><div className="post">{post.title}</div></Link>
+                                )
+                            })
+                        }
+                    </div>
+                </div>
+                
             </div>
             <div className='footer'></div>
-            </div>
+            
         </div>
         </>
     );

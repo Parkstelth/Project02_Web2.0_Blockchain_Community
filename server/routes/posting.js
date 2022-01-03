@@ -20,8 +20,8 @@ router.post('/', async function(req, res, next) {
             db.post.create({
             userName: reqUserName,
             text: reqtext,
-            class: reqclass,
             title: reqtitle,
+            class: reqclass,
         })
         res.status(201).send({ data : 'your post saved' });
         }

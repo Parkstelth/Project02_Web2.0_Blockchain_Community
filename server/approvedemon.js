@@ -47,16 +47,8 @@ let contract = await new web3.eth.Contract(erc20abi, env.ERC20_CONTRACT_ADDRESS,
                         .then((e) => {
                             return e;
                         })
-                        .then((balance) => {
-                            res.status(200).send({
-                                message: "Serving Successed",
-                                data: {
-                                    username: result[i].dataValues.userName,
-                                    address: result[i].dataValues.address,
-                                    txHash: tx,
-                                    tokenBalance: balance,
-                                },
-                            });
+                        .then(() => {
+                            console.log('transfer success!')
                         });
                 });
               })

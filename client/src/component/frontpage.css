@@ -37,6 +37,7 @@ input:focus {
     border-radius: 10px;
     width: 8vw;
     height: 5vh;
+    margin-right: 1vw;
     border: none;
 }
 .topButton:hover {
@@ -66,18 +67,17 @@ input:focus {
     color:rgb(90, 25, 25);
     font-size: 3vh;
     width: 30vw;
-    height: 18vw;
-    margin: 2vw;
+    height: 40vh;
+    margin: 2vh 2vw 8vh 2vw;
 }
 
 .title {
-    margin-bottom: 2vh;
-    text-decoration: underline;
-    text-underline-position: under;
+    height: 4vh;
+    border-bottom: 0.45vh solid rgb(90, 25, 25);;
 }
 
 .post {
-    margin: 0 0 0.5vh 2vw;
+    margin: 1vh 0 0.5vh 2vw;
     font-size: 2vh;
     border-bottom: 0.2vh solid rgba(90, 25, 25, 0.267);
     overflow: none;
