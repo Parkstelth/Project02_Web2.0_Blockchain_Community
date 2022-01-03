@@ -1,0 +1,96 @@
+input:focus {
+    outline:none;
+}
+
+.background {
+    width: 70vw;
+    height: 100%;
+    background-color: white;
+}
+
+.siteTop {
+
+    width: 100%;
+    height: 9vh;
+    background-color: rgb(182, 109, 109);
+    margin-bottom: 8vh;
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+}
+.siteLogo{
+    height: 80%;
+    width: auto;
+    object-fit: scale-down;
+    margin: 0 0 0 2.8vw;
+}
+.siteName {
+    color: rgb(255, 255, 255);
+    align-items: center;
+    font-size: 5vh;
+    margin-right: 20vw;
+}
+
+.topButton {
+    font-size: 2vh;
+    background-color: rgb(255, 217, 208);
+    border-radius: 10px;
+    width: 8vw;
+    height: 5vh;
+    margin-right: 1vw;
+    border: none;
+}
+.topButton:hover {
+    cursor: pointer;
+    background-color: rgb(241, 202, 168);
+}
+
+.topLogin {
+    border: 0;
+    outline: 0;
+    background-color: rgb(255, 217, 208);
+    border-radius: 10px;
+    width: 8vw;
+    height: 5vh;
+    font-size: 2vh;
+    margin-right: 1vw;
+}
+
+.topLogin:hover {
+    cursor: pointer;
+    background-color: rgb(241, 202, 168);
+}
+
+.forum {
+    display: inline-block;
+    background-color: rgb(255, 255, 255);
+    color:rgb(90, 25, 25);
+    font-size: 3vh;
+    width: 30vw;
+    height: 40vh;
+    margin: 2vh 2vw 8vh 2vw;
+}
+
+.title {
+    height: 4vh;
+    border-bottom: 0.45vh solid rgb(90, 25, 25);;
+}
+
+.post {
+    margin: 1vh 0 0.5vh 2vw;
+    font-size: 2vh;
+    border-bottom: 0.2vh solid rgba(90, 25, 25, 0.267);
+    overflow: none;
+}
+.post:hover {
+    cursor: pointer;
+    background-color: rgba(255, 99, 71, 0.116);
+}
+
+.footer {
+    flex-direction: row;
+    justify-content: center;
+    width:100%;
+    height: 5vh;
+    background-color: rgb(182, 109, 109);
+}

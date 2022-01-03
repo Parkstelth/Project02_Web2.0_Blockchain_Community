@@ -1,0 +1,48 @@
+.signUpWrapper {
+    margin-top: 30vh;
+    height: 100vh;
+}
+
+.text {
+    color: white;
+    font-size: 10vh;
+}
+
+.input {
+    font-size: 2vw;
+    display: table;
+    border: 0;
+    border-radius: 30px;
+    width: 20vw;
+    height: 5vh;
+    padding-left: 1vw;
+    margin: 1vw 0 1vw 0;
+}
+
+.submit {
+    font-size: 2vw;
+    margin-top: 2vh;
+    border-radius: 10px;
+    width: 12vw;
+}
+
+.addoption{
+    color:red;
+    text-align: center;
+}
+
+
+.flex{
+    display: flex;
+    justify-content: center;
+}
+
+.return{
+    margin-left:24px;
+    height: 24px;
+    width: 80px;
+}
+
+.flex.appoption{
+    margin-top:50px;
+}

@@ -1,0 +1,33 @@
+.thispostWrapper {
+    font-weight: 700;
+    margin-left: 13%;
+    width: 100vw;
+    height: 100vh;
+}
+
+.thispostContents {
+    font-size: 2vh;
+    color: rgb(83, 63, 30);
+    background-color: rgb(255, 255, 255);
+    width: 60vw;
+    height: 92%;
+    padding: 8vh 12vh 0 12vh;
+}
+
+.thispostInfo {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 3vh;
+}
+
+.thispostTitle {
+    font-size: 6vh;
+    border-bottom: 2vh solid rgb(182, 109, 109);
+}
+
+.thispostTime {
+    font-size: 2vh;
+}
+.thispostText {
+    font-size: 3vh;
+}

@@ -1,0 +1,44 @@
+.postWrapper {
+    height: 100vh;
+}
+
+.postContents {
+    background-color: rgb(207, 162, 157);
+    width: 60vw;
+    height: 95vh;
+    padding: 5vh 0 0 15vh;
+}
+
+.postText {
+    color: white;
+    font-size: 4vh;
+}
+
+.postTitle {
+    font-size: 2vw;
+    width: 47vw;
+    height: 5vh;
+    border: none;
+    outline: none;
+    resize: none;
+    padding-left: 1vw;
+}
+
+.postArticle {
+    font-size: 1.5vw;
+    width: 47vw;
+    height: 60vh;
+    border: none;
+    outline: none;
+    resize: none;
+    padding-left: 1vw;
+}
+
+.postSend {
+    background-color: rgb(153, 90, 102);
+    color:rgb(255, 229, 209);
+    border: none;
+    border-radius: 20px;
+    font-size: 5vh;
+    cursor: pointer;
+}

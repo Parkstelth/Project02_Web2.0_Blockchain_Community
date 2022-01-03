@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Gugi&family=Pattaya&display=swap');
+
+.nftPageWrapper {
+    font-weight: 700;
+    margin-left: 15%;
+    width: 100vw;
+    height: 100vh;
+}
+
+.back {
+    text-decoration-line: none; 
+    margin-right: 2vw; 
+    float: right; 
+    color: rgb(70, 60, 30); 
+    font-size: 2vh;
+}
+
+.NFTTitle {
+    font-size: 8vh;
+    font-family: gugi;
+}
+
+.nftPageContents {
+    font-size: 2vh;
+    color: rgb(83, 63, 30);
+    background-color: rgb(255, 212, 219);
+    width: 65vw;
+    height: 95vh;
+    padding: 5vh 0 0 6vh;
+}
+
+.nftWrapper {
+    display: flex; 
+    background-color: rgb(179, 219, 219);
+    border-left: 0.8vw solid #553742;
+}
+
+.card {
+    margin: 3vh 40px 3vh 12vw;
+    width: 29.5vw;
+    height: 28.8vh;
+    background-color: #6b503f;
+    font-size: 4vw;
+    border-radius: 20px;
+}
+.cardImgDiv {
+    width: 29vw;
+    height: 28vh;
+    overflow:hidden;
+    margin:0px 10px 0 0;
+    border-radius: 3%;
+
+    color: white;
+}
+
+.cardImg {
+
+    width:100%;
+    height:100%;
+    object-fit:cover;
+
+}
+
+.nftBid {
+    background-color: rgb(253, 253, 253);
+    margin: 0 0 0 3vw;
+    padding: 2vw;
+    font-size: 1.5vw;
+}
+
+.bidList {
+    font-size: 2vw;
+    margin: 1vh 0 3vh 15vw;
+}
+
+.bidText {
+    display: flex;
+    justify-content:space-between;
+    margin-right: 2vw;
+}
+
+.bidInput {
+    width: 12vw;
+    height: 3.5vh;
+    font-size: 2vh;
+    border-radius: 7vw;
+    padding-left: 1.2vw;
+}
+
+.bidButton {
+    border: none;
+    margin: 0 0 0 0.3vw;
+    border-radius: 7vw;
+    width: 13vw;
+    height: 4vh;
+    font-weight: 700;
+    color: rgb(121, 43, 7);
+    background-color: rgb(255, 212, 219);
+}
+
+.bidButton:hover {
+    background-color: rgba(255, 179, 190, 0.774);
+    cursor: pointer;
+}
