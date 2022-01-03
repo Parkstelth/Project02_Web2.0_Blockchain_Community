@@ -60,20 +60,42 @@ input:focus {
     background-color: rgb(241, 202, 168);
 }
 
-.forum {
+.forum1 {
     display: inline-block;
     background-color: rgb(255, 255, 255);
     color:rgb(90, 25, 25);
     font-size: 3vh;
-    width: 30vw;
     height: 18vw;
     margin: 2vw;
+    display: flex;
+    justify-content: center;
+
+}
+
+.forum2 {
+    display: inline-block;
+    background-color: rgb(255, 255, 255);
+    color:rgb(90, 25, 25);
+    font-size: 3vh;
+    border-top: 2px solid bisque;
+    height: 18vw;
+    margin: 2vw;
+    display: flex;
+    justify-content: center;
 }
 
 .title {
     margin-bottom: 2vh;
     text-decoration: underline;
     text-underline-position: under;
+}
+
+
+.title1 {
+    margin-bottom: 2vh;
+    text-decoration: underline;
+    text-underline-position: under;
+    margin-right: 200px;
 }
 
 .post {
@@ -94,3 +116,7 @@ input:focus {
     height: 5vh;
     background-color: rgb(182, 109, 109);
 }
+
+/* .topButton.addoption{
+    margin-right: 1vw;
+} */

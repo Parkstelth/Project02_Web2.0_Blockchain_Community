@@ -89,11 +89,6 @@ function LoginPage({loginModal, setIsLogin, appusername, userpassword, isLogin, 
             })
     }
 
-    function copy_to_clipboard(){
-        document.execCommand('message')
-        alert('복사되었습니다')
-    }
-
     return (
         <div className="wrapper" onClick={onCloseModal}>
             <div className="loginDiv">

@@ -43,7 +43,7 @@
 .contract{
     margin-top:3px;
     margin-left:8px;
-    width: 490px;
+    margin-right: 3vw;
     color:black;
     border:2px solid orangered;
     border-radius: 30px;

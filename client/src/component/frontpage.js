@@ -7,7 +7,7 @@ import NFTPage from './nftpage';
 import UserInfo from './userinfo';
 
 
-function FrontPage({ loginClick, loginModal, myPageClick, myPageModal, setIsLogin, appusername, userpassword, isLogin, mainUsername, mainPassword }) {
+function FrontPage({ loginClick, loginModal, myPageClick, myPageModal, setIsLogin, appusername, userpassword, isLogin, mainUsername, mainPassword, setPostid, symbole }) {
 
     const [postlist, setPostlist] = useState([]);
 //
@@ -22,13 +22,14 @@ function FrontPage({ loginClick, loginModal, myPageClick, myPageModal, setIsLogi
         })
     }
 
+
     return (
         <>
         {loginClick 
         ? <LoginPage loginModal={loginModal} setIsLogin={setIsLogin} appusername={appusername} userpassword={userpassword} isLogin={isLogin} mainUsername={mainUsername} mainPassword={mainPassword}/>
         : ''}
         {myPageClick
-        ? <UserInfo myPageModal={myPageModal} setIsLogin={setIsLogin} appusername={appusername} userpassword={userpassword} isLogin={isLogin} mainUsername={mainUsername} mainPassword={mainPassword}/>
+        ? <UserInfo myPageModal={myPageModal} setIsLogin={setIsLogin} appusername={appusername} userpassword={userpassword} isLogin={isLogin} mainUsername={mainUsername} mainPassword={mainPassword} symbole={symbole}/>
         : ''}
         <div className = "background">
 
@@ -53,65 +54,52 @@ function FrontPage({ loginClick, loginModal, myPageClick, myPageModal, setIsLogi
                 </div>
 
             <div className="contentDiv">
-            <div className="forum">
-                <div className="title"><strong>인기 게시판</strong></div>
+
+            <div className="forum1">
+                <div className="title1"><strong>인기 게시판</strong>
+                <div className="post">준비 중 입니다</div>
+                </div>
+                    
+                <div className="title"><strong>블록체인 게시판</strong>
                 {
                     postlist.map((post)=>{
-                        return(
-                            <Link to={'/'+ post.id}><div key={post.id} className="post">{post.text}</div></Link>
-                        )
+                        if(post.class==='blockchain'){
+                            return(
+                                <Link to={'/'+ post.id} onClick={()=>setPostid(post.id)} key={post.id}><div className="post">{post.title}</div></Link>
+                            )
+                        }
+
                     })
                 }
+                </div>
+  
             </div>
-            <div className="forum">
-                <div className="title"><strong>블록체인 게시판</strong></div>
+
+            <div className="forum2">
+                <div className="title1"><strong>코인 게시판</strong>
                 {
                     postlist.map((post)=>{
+                        if(post.class==='coin'){
                         return(
-                            <Link to={'/'+ post.id}><div key={post.id} className="post">{post.text}</div></Link>
+                            <Link to={'/'+ post.id} onClick={()=>setPostid(post.id)} key={post.id}><div className="post">{post.title}</div></Link>
                         )
+                        }
                     })
                 }
-            </div>
-            <div className="forum">
-                <div className="title"><strong>코인 게시판</strong></div>
+                </div>
+
+                <div className="title"><strong>자유 게시판</strong>
                 {
                     postlist.map((post)=>{
+                        if(post.class==='free'){
                         return(
-                            <div key={post.id} className="post">{post.text}</div>
+                            <Link to={'/'+ post.id} onClick={()=>setPostid(post.id)} key={post.id}><div className="post">{post.title}</div></Link>
                         )
+                        }
                     })
                 }
-            </div>
-            <div className="forum">
-                <div className="title"><strong>컴퓨터과학 게시판</strong></div>
-                {
-                    postlist.map((post)=>{
-                        return(
-                            <div key={post.id} className="post">{post.text}</div>
-                        )
-                    })
-                }
-            </div>
-            <div className="forum">
-                <div className="title"><strong>컴퓨터과학 게시판</strong></div>
-                {
-                    postlist.map((post)=>{
-                        return(
-                            <div key={post.id} className="post">{post.text}</div>
-                        )
-                    })
-                }
-            </div>
-            <div className="forum">
-                <div className="title"><strong>컴퓨터과학 게시판</strong></div>
-                {
-                    postlist.map((post)=>{
-                        return(
-                            <div key={post.id} className="post">{post.text}</div>
-                        )
-                    })
-                }
+                </div>
+
             </div>
             <div className='footer'></div>
             </div>
