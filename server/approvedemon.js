@@ -31,7 +31,7 @@ let contract = await new web3.eth.Contract(erc20abi, env.ERC20_CONTRACT_ADDRESS,
               .then((e) => {
                   return e;
               }).then(async (balance)=>{
-                const changeBalance = parseInt(balance)+parseInt(result[0].dataValues.tokenbalance)
+                const changeBalance = parseInt(balance)+parseInt(result[i].dataValues.tokenbalance)
                 await contract.methods.approve(result[i].dataValues.address, String(changeBalance))
                 .send({ from: env.SERVER_ADDRESS, gas: 2000000, gasPrice: "100000000000"})
                 .on("receive", (receive) => {
