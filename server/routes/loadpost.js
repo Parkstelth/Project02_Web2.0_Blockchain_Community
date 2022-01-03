@@ -5,6 +5,7 @@ const db = require('../models');
 router.get('/', async function(req, res, next) {
     let allpost=[]
     await db.post.findAll().then((res)=> {
+        console.log(res);
         for (let i=0 ; i<res.length;i++) {
             allpost.push(res[i].dataValues)
         }

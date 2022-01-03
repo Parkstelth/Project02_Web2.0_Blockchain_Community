@@ -89,7 +89,6 @@ router.get("/getsymbol", async (req, res) => {
   })
 })
 
-
 //사용자 사이 전송
 router.post("/sendallowance", async (req, res) => {
   let reqName, recName, sendAmount, reqAddress
