@@ -38,8 +38,8 @@ function FrontPage({ loginClick, loginModal, myPageClick, myPageModal, setIsLogi
                 <div className="siteName">BlockIn</div>
                 {
                 isLogin
-                ? <Link to="posting" onClick={loginModal}><button className="topButton">글쓰기</button></Link>
-                : <button style={{visibility: "hidden"}} className="topButton">글쓰기</button>
+                ? <Link to="posting" onClick={loginModal} className="addoption"><button className="topButton">글쓰기</button></Link>
+                : <button style={{visibility: "hidden"}} className="topButton addoption">글쓰기</button>
                 }
                 <Link to='NFTPage'>
                     {
